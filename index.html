@@ -4,6 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Dan Bartyzal | Personal Hub</title>
+
+  <!-- OpenGraph / Rich Link Preview Tags -->
+  <meta name="description" content="Chief BMET • Maker • Central AR — Connect with Dan Bartyzal across professional, social, and gaming networks." />
+  <meta property="og:title" content="Dan Bartyzal | Personal Hub" />
+  <meta property="og:description" content="Chief BMET • Maker • Central AR — Professional channels, direct transfer, and gaming roster." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0a0a0c" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -50,7 +60,7 @@
       max-width: 460px;
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 22px;
     }
 
     /* Editorial Header & Bio */
@@ -59,7 +69,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 14px;
+      gap: 13px;
     }
 
     .avatar-frame {
@@ -116,8 +126,125 @@
       font-size: 0.9rem;
       color: var(--text-muted);
       font-weight: 300;
-      max-width: 380px;
+      max-width: 390px;
       line-height: 1.6;
+    }
+
+    /* Quick Action Bar: Save vCard & Native Share */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 10px;
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 14px;
+      border-radius: var(--radius-md);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .action-btn svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+
+    .action-btn-primary {
+      background: linear-gradient(135deg, rgba(197, 160, 89, 0.24), rgba(197, 160, 89, 0.09));
+      border: 1px solid var(--brass-primary);
+      color: var(--brass-light);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+    }
+
+    .action-btn-primary:hover {
+      background: linear-gradient(135deg, rgba(197, 160, 89, 0.34), rgba(197, 160, 89, 0.15));
+      transform: translateY(-2px);
+    }
+
+    .action-btn-secondary {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+    }
+
+    .action-btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--brass-dim);
+      color: var(--brass-light);
+      transform: translateY(-2px);
+    }
+
+    /* Top View Filter Toggle */
+    .view-filter-wrap {
+      background: #0c0c10;
+      border: 1px solid var(--brass-dim);
+      border-radius: 12px;
+      padding: 5px;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr 1.35fr;
+      gap: 5px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 9px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+      color: var(--text-main);
+    }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, rgba(197, 160, 89, 0.22), rgba(197, 160, 89, 0.07));
+      color: var(--brass-light);
+      border-color: var(--brass-primary);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+    }
+
+    .filter-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--brass-primary);
+      opacity: 0;
+      transform: scale(0.5);
+      transition: var(--transition);
+    }
+
+    .filter-btn.active .filter-dot {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .is-hidden {
+      display: none !important;
     }
 
     /* Direct Payment Icon Row */
@@ -280,7 +407,7 @@
       flex-shrink: 0;
     }
 
-    /* 4-Mode QR Code Dock */
+    /* 4-Mode Offline SVG QR Code Dock */
     .qr-dock {
       background: var(--bg-card);
       border: 1px solid var(--brass-dim);
@@ -325,26 +452,27 @@
 
     .qr-display-frame {
       background: #ffffff;
-      padding: 14px;
+      padding: 12px;
       border-radius: 12px;
       border: 2px solid var(--brass-primary);
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 188px;
-      height: 188px;
+      width: 192px;
+      height: 192px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
     }
 
-    .qr-display-frame img {
+    .qr-display-frame svg {
       width: 100%;
       height: 100%;
       display: block;
+      shape-rendering: crispEdges;
     }
 
     .qr-caption {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       color: var(--brass-light);
       text-align: center;
     }
@@ -367,6 +495,7 @@
       pointer-events: none;
       transition: all 0.25s ease;
       z-index: 100;
+      white-space: nowrap;
     }
 
     .toast.show {
@@ -389,18 +518,43 @@
     <!-- Header / Bio -->
     <header class="profile-header">
       <div class="avatar-frame">
-        <!-- Optional: Replace the span below with <img src="profile.jpg" alt="Dan Bartyzal"> if you upload a photo to your repo -->
+        <!-- Optional: Replace the span below with <img src="profile.jpg" alt="Dan Bartyzal"> if you upload a photo -->
         <div class="avatar-inner"><span>DB</span></div>
       </div>
       <h1 class="profile-name">Dan Bartyzal</h1>
-      <p class="profile-subtitle">Chief BMET &bull; Maker &bull; Central AR</p>
-      <p class="profile-bio">
+      <p id="profile-subtitle" class="profile-subtitle">Chief BMET &bull; Maker &bull; Central AR</p>
+      <p id="profile-bio" class="profile-bio">
         I oversee clinical biomedical engineering and water purification operations by day, and spend my off-hours 3D printing functional parts, carving local pump tracks on a surfskate, or gaming.
       </p>
+
+      <!-- 1-Tap Save Contact (.vcf) & Native Share -->
+      <div class="quick-actions">
+        <button class="action-btn action-btn-primary" onclick="downloadVCard()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+          <span>Save Contact (.vcf)</span>
+        </button>
+        <button class="action-btn action-btn-secondary" onclick="shareHub()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          <span>Share Hub</span>
+        </button>
+      </div>
     </header>
 
-    <!-- Direct Payment Row -->
-    <section>
+    <!-- Sleek Obsidian & Brass View Filter -->
+    <nav class="view-filter-wrap" aria-label="Profile View Filter">
+      <button class="filter-btn active" data-filter="all" onclick="setViewFilter('all')">
+        <span class="filter-dot"></span>All
+      </button>
+      <button class="filter-btn" data-filter="pro" onclick="setViewFilter('pro')">
+        <span class="filter-dot"></span>Professional
+      </button>
+      <button class="filter-btn" data-filter="social" onclick="setViewFilter('social')">
+        <span class="filter-dot"></span>Social &amp; Gaming
+      </button>
+    </nav>
+
+    <!-- Direct Payment Row (Shown in All & Social) -->
+    <section class="hub-section" data-section-cat="social">
       <div class="section-label">Direct Transfer</div>
       <div class="payment-row">
         <a class="pay-pill" href="https://venmo.com/u/Daniel-Bartyzal" target="_blank" rel="noopener">
@@ -423,24 +577,40 @@
       </div>
     </section>
 
-    <!-- Professional & Social -->
-    <section>
-      <div class="section-label">Connect &amp; Social</div>
+    <!-- Professional & Social Section -->
+    <section class="hub-section" data-section-cat="pro social">
+      <div id="connect-section-label" class="section-label">Connect &amp; Social</div>
       <div class="links-group">
-        <a class="link-card" href="https://www.linkedin.com/search/results/all/?keywords=Daniel%20Bartyzal" target="_blank" rel="noopener">
+        <!-- LinkedIn (Pro) -->
+        <a class="link-card" data-cat="pro" href="https://www.linkedin.com/search/results/all/?keywords=Daniel%20Bartyzal" target="_blank" rel="noopener">
           <div class="link-left">
             <div class="icon-frame">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
             </div>
             <div class="link-meta">
               <span class="link-name">LinkedIn</span>
-              <span class="link-handle">Daniel Bartyzal</span>
+              <span class="link-handle">Daniel Bartyzal &bull; Chief BMET</span>
             </div>
           </div>
           <span class="link-action">OPEN</span>
         </a>
 
-        <a class="link-card" href="https://www.instagram.com/barteezyy/" target="_blank" rel="noopener">
+        <!-- Direct Email (Pro) -->
+        <button class="link-card" data-cat="pro" onclick="copyText('bartyzal9@gmail.com', 'Email address copied')">
+          <div class="link-left">
+            <div class="icon-frame">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <div class="link-meta">
+              <span class="link-name">Direct Email</span>
+              <span class="link-handle">bartyzal9@gmail.com</span>
+            </div>
+          </div>
+          <span class="link-action">COPY</span>
+        </button>
+
+        <!-- Instagram (Social) -->
+        <a class="link-card" data-cat="social" href="https://www.instagram.com/barteezyy/" target="_blank" rel="noopener">
           <div class="link-left">
             <div class="icon-frame">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -453,7 +623,8 @@
           <span class="link-action">OPEN</span>
         </a>
 
-        <button class="link-card" onclick="copyText('barteezyy', 'Discord username copied')">
+        <!-- Discord (Social) -->
+        <button class="link-card" data-cat="social" onclick="copyText('barteezyy', 'Discord username copied')">
           <div class="link-left">
             <div class="icon-frame">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12h.01M15 12h.01M7.5 4.5c3-.8 6-.8 9 0l1.5 3c2 1.5 3 4.5 2.5 8.5-2 1.8-4.2 2.5-6 2.5l-1-2h-3l-1 2c-1.8 0-4-.7-6-2.5-.5-4 .5-7 2.5-8.5l1.5-3z"/></svg>
@@ -466,7 +637,8 @@
           <span class="link-action">COPY</span>
         </button>
 
-        <a class="link-card" href="https://open.spotify.com/user/bartyzal9" target="_blank" rel="noopener">
+        <!-- Spotify (Social) -->
+        <a class="link-card" data-cat="social" href="https://open.spotify.com/user/bartyzal9" target="_blank" rel="noopener">
           <div class="link-left">
             <div class="icon-frame">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14.5c2.5-1 5.5-1 8 0M7 11.5c3.2-1.2 6.8-1.2 10 0M6.5 8.5c3.8-1.5 7.2-1.5 11 0"/></svg>
@@ -481,11 +653,11 @@
       </div>
     </section>
 
-    <!-- Gaming Roster -->
-    <section>
+    <!-- Gaming Roster (Shown in All & Social) -->
+    <section class="hub-section" data-section-cat="social">
       <div class="section-label">Gaming Networks</div>
       <div class="links-group">
-        <button class="link-card" onclick="copyText('IntenseApathy9', 'Xbox Gamertag copied')">
+        <button class="link-card" data-cat="social" onclick="copyText('IntenseApathy9', 'Xbox Gamertag copied')">
           <div class="link-left">
             <div class="icon-frame">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M6.5 6.5c3.5 2.5 7.5 2.5 11 0M7 17.5c2.5-4.5 7.5-4.5 10 0"/></svg>
@@ -498,7 +670,7 @@
           <span class="link-action">COPY</span>
         </button>
 
-        <button class="link-card" onclick="copyText('kryptonianutopian', 'Epic Games handle copied')">
+        <button class="link-card" data-cat="social" onclick="copyText('kryptonianutopian', 'Epic Games handle copied')">
           <div class="link-left">
             <div class="icon-frame">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -511,7 +683,7 @@
           <span class="link-action">COPY</span>
         </button>
 
-        <button class="link-card" onclick="copyText('SW-1315-0104-9923', 'Nintendo Friend Code copied')">
+        <button class="link-card" data-cat="social" onclick="copyText('SW-1315-0104-9923', 'Nintendo Friend Code copied')">
           <div class="link-left">
             <div class="icon-frame">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="8" height="16" rx="4"/><rect x="13" y="4" width="8" height="16" rx="4"/><circle cx="7" cy="9" r="1.2" fill="currentColor"/><circle cx="17" cy="14" r="1.2" fill="currentColor"/></svg>
@@ -526,19 +698,17 @@
       </div>
     </section>
 
-    <!-- 4-Mode QR Code Dock -->
+    <!-- 4-Mode Offline QR Code Dock -->
     <section>
-      <div class="section-label">Quick Share QR Dock</div>
+      <div class="section-label">Quick Share QR Dock (Offline Ready)</div>
       <div class="qr-dock">
         <div class="qr-tabs">
-          <button class="qr-tab active" onclick="setQRMode('hub', this)">Hub URL</button>
-          <button class="qr-tab" onclick="setQRMode('venmo', this)">Venmo</button>
-          <button class="qr-tab" onclick="setQRMode('cashapp', this)">Cash App</button>
-          <button class="qr-tab" onclick="setQRMode('linkedin', this)">LinkedIn</button>
+          <button class="qr-tab active" data-qr="hub" onclick="setQRMode('hub', this)">Hub URL</button>
+          <button class="qr-tab" data-qr="venmo" onclick="setQRMode('venmo', this)">Venmo</button>
+          <button class="qr-tab" data-qr="cashapp" onclick="setQRMode('cashapp', this)">Cash App</button>
+          <button class="qr-tab" data-qr="linkedin" onclick="setQRMode('linkedin', this)">LinkedIn</button>
         </div>
-        <div class="qr-display-frame">
-          <img id="qr-image" src="" alt="QR Code" />
-        </div>
+        <div id="qr-box" class="qr-display-frame" aria-label="QR Code"></div>
         <div id="qr-caption" class="qr-caption">Scan to open this Hub</div>
       </div>
     </section>
@@ -551,31 +721,339 @@
   <div id="toast" class="toast">Copied to clipboard</div>
 
   <script>
+    /* =========================================================================
+       Self-Contained Offline ISO QR Code SVG Engine (Zero External Dependencies)
+       Supports Byte Mode, EC Level L, Versions 1-10 (Up to 271 bytes)
+       ========================================================================= */
+    const OfflineQR = (() => {
+      // Capacities (total data codewords) and EC codewords per block for Level L, v1..v10
+      const VERSIONS = [
+        null,
+        { total: 19, ec: 7, blocks: 1, align: [] },
+        { total: 34, ec: 10, blocks: 1, align: [6, 18] },
+        { total: 55, ec: 15, blocks: 1, align: [6, 22] },
+        { total: 80, ec: 20, blocks: 1, align: [6, 26] },
+        { total: 108, ec: 26, blocks: 1, align: [6, 30] },
+        { total: 136, ec: 18, blocks: 2, align: [6, 34] },
+        { total: 156, ec: 20, blocks: 2, align: [6, 22, 38] },
+        { total: 194, ec: 24, blocks: 2, align: [6, 24, 42] },
+        { total: 232, ec: 30, blocks: 2, align: [6, 26, 46] },
+        { total: 274, ec: 18, blocks: 4, align: [6, 28, 50] }
+      ];
+
+      // GF(256) log/exp tables for Reed-Solomon
+      const EXP = new Uint8Array(512);
+      const LOG = new Uint8Array(256);
+      let x = 1;
+      for (let i = 0; i < 255; i++) {
+        EXP[i] = x;
+        LOG[x] = i;
+        x = (x << 1) ^ (x & 128 ? 0x11d : 0);
+      }
+      for (let i = 255; i < 512; i++) EXP[i] = EXP[i - 255];
+
+      function gfMul(a, b) {
+        return a === 0 || b === 0 ? 0 : EXP[LOG[a] + LOG[b]];
+      }
+
+      function rsGenPoly(degree) {
+        let poly = [1];
+        for (let i = 0; i < degree; i++) {
+          const next = new Array(poly.length + 1).fill(0);
+          for (let j = 0; j < poly.length; j++) {
+            next[j] ^= poly[j];
+            next[j + 1] ^= gfMul(poly[j], EXP[i]);
+          }
+          poly = next;
+        }
+        return poly;
+      }
+
+      function rsEncode(data, ecLen) {
+        const gen = rsGenPoly(ecLen);
+        const msg = new Uint8Array(data.length + ecLen);
+        msg.set(data);
+        for (let i = 0; i < data.length; i++) {
+          const coef = msg[i];
+          if (coef !== 0) {
+            for (let j = 0; j < gen.length; j++) {
+              msg[i + j] ^= gfMul(gen[j], coef);
+            }
+          }
+        }
+        return msg.slice(data.length);
+      }
+
+      function encodeData(text) {
+        const bytes = new TextEncoder().encode(text);
+        let ver = 1;
+        while (ver <= 10) {
+          const cap = VERSIONS[ver].total;
+          const headerBits = ver < 10 ? 12 : 20;
+          if (bytes.length * 8 + headerBits <= cap * 8) break;
+          ver++;
+        }
+        if (ver > 10) ver = 10;
+        const vInfo = VERSIONS[ver];
+        const bits = [];
+        const pushBits = (val, len) => {
+          for (let i = len - 1; i >= 0; i--) bits.push((val >> i) & 1);
+        };
+
+        // Byte mode indicator (0100)
+        pushBits(4, 4);
+        pushBits(bytes.length, ver < 10 ? 8 : 16);
+        for (const b of bytes) pushBits(b, 8);
+
+        const maxBits = vInfo.total * 8;
+        pushBits(0, Math.min(4, maxBits - bits.length));
+        while (bits.length % 8 !== 0) bits.push(0);
+
+        const dataBytes = new Uint8Array(vInfo.total);
+        for (let i = 0; i < bits.length / 8; i++) {
+          let b = 0;
+          for (let j = 0; j < 8; j++) b = (b << 1) | bits[i * 8 + j];
+          dataBytes[i] = b;
+        }
+        let padToggle = true;
+        for (let i = bits.length / 8; i < vInfo.total; i++) {
+          dataBytes[i] = padToggle ? 0xec : 0x11;
+          padToggle = !padToggle;
+        }
+
+        // Interleave blocks + EC
+        const numBlocks = vInfo.blocks;
+        const blockLen = Math.floor(vInfo.total / numBlocks);
+        const extra = vInfo.total % numBlocks;
+        const dataBlocks = [];
+        const ecBlocks = [];
+        let offset = 0;
+        for (let b = 0; b < numBlocks; b++) {
+          const len = blockLen + (b >= numBlocks - extra ? 1 : 0);
+          const slice = dataBytes.slice(offset, offset + len);
+          offset += len;
+          dataBlocks.push(slice);
+          ecBlocks.push(rsEncode(slice, vInfo.ec));
+        }
+
+        const finalBytes = [];
+        const maxBlockLen = blockLen + (extra > 0 ? 1 : 0);
+        for (let i = 0; i < maxBlockLen; i++) {
+          for (let b = 0; b < numBlocks; b++) {
+            if (i < dataBlocks[b].length) finalBytes.push(dataBlocks[b][i]);
+          }
+        }
+        for (let i = 0; i < vInfo.ec; i++) {
+          for (let b = 0; b < numBlocks; b++) {
+            finalBytes.push(ecBlocks[b][i]);
+          }
+        }
+
+        return { ver, vInfo, finalBytes };
+      }
+
+      function buildMatrix(text) {
+        const { ver, vInfo, finalBytes } = encodeData(text);
+        const size = ver * 4 + 17;
+        const mat = Array.from({ length: size }, () => new Int8Array(size));
+        const rsv = Array.from({ length: size }, () => new Uint8Array(size));
+
+        const setMod = (r, c, val, reserve = true) => {
+          if (r >= 0 && r < size && c >= 0 && c < size) {
+            mat[r][c] = val ? 1 : 0;
+            if (reserve) rsv[r][c] = 1;
+          }
+        };
+
+        // Finder patterns + separators
+        const drawFinder = (r0, c0) => {
+          for (let dr = -1; dr <= 7; dr++) {
+            for (let dc = -1; dc <= 7; dc++) {
+              const inOuter = dr >= 0 && dr <= 6 && dc >= 0 && dc <= 6;
+              const onBorder = dr === 0 || dr === 6 || dc === 0 || dc === 6;
+              const inInner = dr >= 2 && dr <= 4 && dc >= 2 && dc <= 4;
+              setMod(r0 + dr, c0 + dc, inOuter && (onBorder || inInner), true);
+            }
+          }
+        };
+        drawFinder(0, 0);
+        drawFinder(0, size - 7);
+        drawFinder(size - 7, 0);
+
+        // Alignment patterns
+        const pos = vInfo.align;
+        for (let i = 0; i < pos.length; i++) {
+          for (let j = 0; j < pos.length; j++) {
+            if ((i === 0 && j === 0) || (i === 0 && j === pos.length - 1) || (i === pos.length - 1 && j === 0)) continue;
+            const r0 = pos[i], c0 = pos[j];
+            for (let dr = -2; dr <= 2; dr++) {
+              for (let dc = -2; dc <= 2; dc++) {
+                const dark = Math.max(Math.abs(dr), Math.abs(dc)) !== 1;
+                setMod(r0 + dr, c0 + dc, dark, true);
+              }
+            }
+          }
+        }
+
+        // Timing patterns
+        for (let i = 8; i < size - 8; i++) {
+          if (!rsv[6][i]) setMod(6, i, i % 2 === 0, true);
+          if (!rsv[i][6]) setMod(i, 6, i % 2 === 0, true);
+        }
+
+        // Dark module & reserve format areas
+        setMod(size - 8, 8, 1, true);
+        for (let i = 0; i < 9; i++) {
+          if (!rsv[8][i]) rsv[8][i] = 1;
+          if (!rsv[i][8]) rsv[i][8] = 1;
+        }
+        for (let i = 0; i < 8; i++) {
+          rsv[8][size - 1 - i] = 1;
+          rsv[size - 1 - i][8] = 1;
+        }
+
+        // Place data bits (upward/downward 2-column zig-zag)
+        let bitIdx = 0;
+        const totalBits = finalBytes.length * 8;
+        let up = true;
+        for (let right = size - 1; right >= 1; right -= 2) {
+          if (right === 6) right = 5;
+          for (let v = 0; v < size; v++) {
+            const r = up ? size - 1 - v : v;
+            for (let j = 0; j < 2; j++) {
+              const c = right - j;
+              if (!rsv[r][c]) {
+                let dark = 0;
+                if (bitIdx < totalBits) {
+                  dark = (finalBytes[bitIdx >> 3] >> (7 - (bitIdx & 7))) & 1;
+                  bitIdx++;
+                }
+                // Apply Mask 0: (r + c) % 2 === 0
+                if ((r + c) % 2 === 0) dark ^= 1;
+                mat[r][c] = dark;
+              }
+            }
+          }
+          up = !up;
+        }
+
+        // Format info for Level L (01) + Mask 0 (000) -> 0x77c4
+        const fmt = 0x77c4;
+        for (let i = 0; i < 15; i++) {
+          const bit = (fmt >> i) & 1;
+          // Around top-left
+          if (i < 6) setMod(i, 8, bit, true);
+          else if (i < 8) setMod(i + 1, 8, bit, true);
+          else if (i === 8) setMod(8, 7, bit, true);
+          else setMod(8, 14 - i, bit, true);
+
+          // Split between bottom-left and top-right
+          if (i < 8) setMod(8, size - 1 - i, bit, true);
+          else setMod(size - 15 + i, 8, bit, true);
+        }
+
+        return { mat, size };
+      }
+
+      function toSVG(text) {
+        const { mat, size } = buildMatrix(text);
+        const margin = 2;
+        const full = size + margin * 2;
+        let path = "";
+        for (let r = 0; r < size; r++) {
+          for (let c = 0; c < size; c++) {
+            if (mat[r][c]) {
+              path += `M${c + margin},${r + margin}h1v1h-1z`;
+            }
+          }
+        }
+        return `<svg viewBox="0 0 ${full} ${full}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#ffffff"/><path d="${path}" fill="#0a0a0c"/></svg>`;
+      }
+
+      return { toSVG };
+    })();
+
+    /* =========================================================================
+       Hub Logic: View Filter, Offline QR Dock, vCard Generator, & Share
+       ========================================================================= */
+    const baseHubUrl = window.location.href.split('#')[0];
+
+    const viewProfiles = {
+      all: {
+        subtitle: "Chief BMET \u2022 Maker \u2022 Central AR",
+        bio: "I oversee clinical biomedical engineering and water purification operations by day, and spend my off-hours 3D printing functional parts, carving local pump tracks on a surfskate, or gaming.",
+        sectionTitle: "Connect & Social",
+        defaultQR: "hub"
+      },
+      pro: {
+        subtitle: "Chief BMET \u2022 Facility Operations \u2022 Central AR",
+        bio: "Chief Biomedical Equipment Technician overseeing clinical equipment maintenance, AAMI water purification systems, QAPI compliance, and vendor operations across Central Arkansas.",
+        sectionTitle: "Professional Channels",
+        defaultQR: "linkedin"
+      },
+      social: {
+        subtitle: "Maker \u2022 Surfskater \u2022 Gamer",
+        bio: "Fabricating functional 3D-printed parts, carving local Central Arkansas pump tracks on a surfskate, and squading up on Xbox, Switch, and Fortnite.",
+        sectionTitle: "Social Channels",
+        defaultQR: "hub"
+      }
+    };
+
     const qrModes = {
       hub: {
-        url: window.location.href,
+        url: baseHubUrl,
         caption: "Scan to open Dan's Personal Hub"
       },
       venmo: {
         url: "https://venmo.com/u/Daniel-Bartyzal",
-        caption: "Venmo • @Daniel-Bartyzal"
+        caption: "Venmo \u2022 @Daniel-Bartyzal"
       },
       cashapp: {
         url: "https://cash.app/$DanB999",
-        caption: "Cash App • $DanB999"
+        caption: "Cash App \u2022 $DanB999"
       },
       linkedin: {
         url: "https://www.linkedin.com/search/results/all/?keywords=Daniel%20Bartyzal",
-        caption: "LinkedIn • Daniel Bartyzal"
+        caption: "LinkedIn \u2022 Daniel Bartyzal"
       }
     };
 
+    function setViewFilter(mode) {
+      const targetMode = viewProfiles[mode] ? mode : 'all';
+      const profile = viewProfiles[targetMode];
+
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === targetMode);
+      });
+
+      document.getElementById('profile-subtitle').textContent = profile.subtitle;
+      document.getElementById('profile-bio').textContent = profile.bio;
+      document.getElementById('connect-section-label').textContent = profile.sectionTitle;
+
+      document.querySelectorAll('.hub-section').forEach(sec => {
+        const allowed = sec.dataset.sectionCat.split(' ');
+        const showSec = targetMode === 'all' || allowed.includes(targetMode);
+        sec.classList.toggle('is-hidden', !showSec);
+      });
+
+      document.querySelectorAll('.link-card[data-cat]').forEach(card => {
+        const allowed = card.dataset.cat.split(' ');
+        const showCard = targetMode === 'all' || allowed.includes(targetMode);
+        card.classList.toggle('is-hidden', !showCard);
+      });
+
+      const qrBtn = document.querySelector(`.qr-tab[data-qr="${profile.defaultQR}"]`);
+      if (qrBtn) setQRMode(profile.defaultQR, qrBtn);
+
+      const newHash = targetMode === 'all' ? window.location.pathname : `#${targetMode}`;
+      history.replaceState(null, '', newHash);
+    }
+
     function updateQR(modeKey) {
       const mode = qrModes[modeKey];
-      const qrImg = document.getElementById('qr-image');
+      const qrBox = document.getElementById('qr-box');
       const qrCap = document.getElementById('qr-caption');
-      const encoded = encodeURIComponent(mode.url);
-      qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&margin=4&data=${encoded}`;
+      qrBox.innerHTML = OfflineQR.toSVG(mode.url);
       qrCap.textContent = mode.caption;
     }
 
@@ -585,17 +1063,63 @@
       updateQR(modeKey);
     }
 
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
     function copyText(text, message) {
       navigator.clipboard.writeText(text).then(() => {
-        const toast = document.getElementById('toast');
-        toast.textContent = message;
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 2200);
+        showToast(message);
       });
     }
 
-    // Initialize QR Dock on load
-    updateQR('hub');
+    // 1-Tap Save Contact (.vcf) Generator
+    function downloadVCard() {
+      const vcardLines = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        "N:Bartyzal;Dan;;;",
+        "FN:Dan Bartyzal",
+        "TITLE:Chief Biomedical Equipment Technician",
+        "EMAIL;TYPE=INTERNET:bartyzal9@gmail.com",
+        "ADR;TYPE=WORK:;;;North Little Rock;AR;;USA",
+        `URL:${baseHubUrl}`,
+        "NOTE:Chief BMET • Maker • Central AR",
+        "END:VCARD"
+      ];
+      const blob = new Blob([vcardLines.join("\r\n")], { type: "text/vcard;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "Dan_Bartyzal.vcf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+      showToast("Contact card (.vcf) downloaded");
+    }
+
+    // Native Share Sheet / Fallback Copy
+    function shareHub() {
+      const shareData = {
+        title: "Dan Bartyzal | Personal Hub",
+        text: "Connect with Dan Bartyzal — Chief BMET • Maker • Central AR",
+        url: window.location.href
+      };
+      if (navigator.share) {
+        navigator.share(shareData).catch(() => {});
+      } else {
+        copyText(window.location.href, "Hub link copied to clipboard");
+      }
+    }
+
+    // Initialize Hub on Load
+    const initialHash = window.location.hash.replace('#', '').toLowerCase();
+    setViewFilter(viewProfiles[initialHash] ? initialHash : 'all');
   </script>
 </body>
 </html>
+ 
