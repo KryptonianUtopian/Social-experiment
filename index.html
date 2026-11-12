@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Dan Bartyzal | Personal Hub</title>
+  <title>Dan Bartyzal | Chief BMET • DCI</title>
 
   <!-- OpenGraph / Rich Link Preview Tags -->
-  <meta name="description" content="Chief BMET • Maker • Central AR — Connect with Dan Bartyzal across professional, social, and gaming networks." />
-  <meta property="og:title" content="Dan Bartyzal | Personal Hub" />
-  <meta property="og:description" content="Chief BMET • Maker • Central AR — Professional channels, direct transfer, and gaming roster." />
+  <meta name="description" content="Dan Bartyzal — Chief BMET • Dialysis Clinic, Inc. (DCI). Direct contact, vCard, and professional channels." />
+  <meta property="og:title" content="Dan Bartyzal | Chief BMET • DCI" />
+  <meta property="og:description" content="Chief Biomedical Equipment Technician at Dialysis Clinic, Inc. (DCI) — Direct phone, work email, and contact card." />
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#0a0a0c" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -186,15 +186,15 @@
       transform: translateY(-2px);
     }
 
-    /* Top View Filter Toggle */
+    /* Top View Filter Toggle (2 Tabs: DCI Professional vs Non-Professional) */
     .view-filter-wrap {
       background: #0c0c10;
       border: 1px solid var(--brass-dim);
       border-radius: 12px;
       padding: 5px;
       display: grid;
-      grid-template-columns: 1fr 1.2fr 1.35fr;
-      gap: 5px;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03);
     }
 
@@ -203,17 +203,17 @@
       border: 1px solid transparent;
       color: var(--text-muted);
       font-family: 'Inter', sans-serif;
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       font-weight: 500;
       letter-spacing: 0.04em;
-      padding: 9px 8px;
+      padding: 10px 10px;
       border-radius: 8px;
       cursor: pointer;
       transition: var(--transition);
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 7px;
       white-space: nowrap;
     }
 
@@ -229,8 +229,8 @@
     }
 
     .filter-dot {
-      width: 5px;
-      height: 5px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: var(--brass-primary);
       opacity: 0;
@@ -247,7 +247,7 @@
       display: none !important;
     }
 
-    /* Direct Payment Icon Row */
+    /* Section Labels */
     .section-label {
       font-size: 0.7rem;
       text-transform: uppercase;
@@ -267,6 +267,7 @@
       background: linear-gradient(90deg, var(--brass-dim), transparent);
     }
 
+    /* Direct Payment Icon Row */
     .payment-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -334,6 +335,7 @@
       width: 100%;
       text-align: left;
       font-family: inherit;
+      gap: 10px;
     }
 
     .link-card:hover {
@@ -396,6 +398,13 @@
       text-overflow: ellipsis;
     }
 
+    .link-actions-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
     .link-action {
       font-size: 0.72rem;
       font-family: 'JetBrains Mono', monospace;
@@ -405,6 +414,15 @@
       border: 1px solid rgba(197, 160, 89, 0.2);
       background: rgba(197, 160, 89, 0.05);
       flex-shrink: 0;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .link-action:hover {
+      background: rgba(197, 160, 89, 0.18);
+      border-color: var(--brass-primary);
+      color: var(--brass-light);
     }
 
     /* 4-Mode Offline SVG QR Code Dock */
@@ -522,9 +540,9 @@
         <div class="avatar-inner"><span>DB</span></div>
       </div>
       <h1 class="profile-name">Dan Bartyzal</h1>
-      <p id="profile-subtitle" class="profile-subtitle">Chief BMET &bull; Maker &bull; Central AR</p>
+      <p id="profile-subtitle" class="profile-subtitle">Chief BMET &bull; Dialysis Clinic, Inc. (DCI)</p>
       <p id="profile-bio" class="profile-bio">
-        I oversee clinical biomedical engineering and water purification operations by day, and spend my off-hours 3D printing functional parts, carving local pump tracks on a surfskate, or gaming.
+        Chief Biomedical Equipment Technician overseeing clinical equipment maintenance, AAMI water purification systems, facility operations, and technical logistics across North Little Rock &amp; McCrory, AR.
       </p>
 
       <!-- 1-Tap Save Contact (.vcf) & Native Share -->
@@ -540,21 +558,73 @@
       </div>
     </header>
 
-    <!-- Sleek Obsidian & Brass View Filter -->
+    <!-- 2-Tab View Filter: DCI / Professional (Default) & Non-Professional -->
     <nav class="view-filter-wrap" aria-label="Profile View Filter">
-      <button class="filter-btn active" data-filter="all" onclick="setViewFilter('all')">
-        <span class="filter-dot"></span>All
+      <button class="filter-btn active" data-filter="pro" onclick="setViewFilter('pro')">
+        <span class="filter-dot"></span>DCI / Professional
       </button>
-      <button class="filter-btn" data-filter="pro" onclick="setViewFilter('pro')">
-        <span class="filter-dot"></span>Professional
-      </button>
-      <button class="filter-btn" data-filter="social" onclick="setViewFilter('social')">
-        <span class="filter-dot"></span>Social &amp; Gaming
+      <button class="filter-btn" data-filter="non-pro" onclick="setViewFilter('non-pro')">
+        <span class="filter-dot"></span>Non-Professional
       </button>
     </nav>
 
-    <!-- Direct Payment Row (Shown in All & Social) -->
-    <section class="hub-section" data-section-cat="social">
+    <!-- DCI & Professional Contact Section (Default Active View) -->
+    <section class="hub-section" data-section-cat="pro">
+      <div class="section-label">DCI Direct Contact</div>
+      <div class="links-group">
+        <!-- Mobile / Cell Call & Copy -->
+        <div class="link-card" data-cat="pro" onclick="window.location.href='tel:5016806730'">
+          <div class="link-left">
+            <div class="icon-frame">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="link-meta">
+              <span class="link-name">Mobile / Cell</span>
+              <span class="link-handle">501-680-6730</span>
+            </div>
+          </div>
+          <div class="link-actions-wrap" onclick="event.stopPropagation()">
+            <a class="link-action" href="tel:5016806730">CALL</a>
+            <a class="link-action" href="sms:5016806730">TEXT</a>
+            <button class="link-action" type="button" onclick="copyText('501-680-6730', 'Cell number copied')">COPY</button>
+          </div>
+        </div>
+
+        <!-- DCI Work Email -->
+        <div class="link-card" data-cat="pro" onclick="window.location.href='mailto:daniel.bartyzal@dciinc.org'">
+          <div class="link-left">
+            <div class="icon-frame">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <div class="link-meta">
+              <span class="link-name">DCI Work Email</span>
+              <span class="link-handle">daniel.bartyzal@dciinc.org</span>
+            </div>
+          </div>
+          <div class="link-actions-wrap" onclick="event.stopPropagation()">
+            <a class="link-action" href="mailto:daniel.bartyzal@dciinc.org">EMAIL</a>
+            <button class="link-action" type="button" onclick="copyText('daniel.bartyzal@dciinc.org', 'DCI email copied')">COPY</button>
+          </div>
+        </div>
+
+        <!-- LinkedIn (Pro) -->
+        <a class="link-card" data-cat="pro" href="https://www.linkedin.com/search/results/all/?keywords=Daniel%20Bartyzal" target="_blank" rel="noopener">
+          <div class="link-left">
+            <div class="icon-frame">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </div>
+            <div class="link-meta">
+              <span class="link-name">LinkedIn</span>
+              <span class="link-handle">Daniel Bartyzal &bull; Chief BMET</span>
+            </div>
+          </div>
+          <span class="link-action">OPEN</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Non-Professional: Direct Payment Row -->
+    <section class="hub-section is-hidden" data-section-cat="non-pro">
       <div class="section-label">Direct Transfer</div>
       <div class="payment-row">
         <a class="pay-pill" href="https://venmo.com/u/Daniel-Bartyzal" target="_blank" rel="noopener">
@@ -577,40 +647,26 @@
       </div>
     </section>
 
-    <!-- Professional & Social Section -->
-    <section class="hub-section" data-section-cat="pro social">
-      <div id="connect-section-label" class="section-label">Connect &amp; Social</div>
+    <!-- Non-Professional: Personal & Social Channels -->
+    <section class="hub-section is-hidden" data-section-cat="non-pro">
+      <div class="section-label">Personal &amp; Social</div>
       <div class="links-group">
-        <!-- LinkedIn (Pro) -->
-        <a class="link-card" data-cat="pro" href="https://www.linkedin.com/search/results/all/?keywords=Daniel%20Bartyzal" target="_blank" rel="noopener">
-          <div class="link-left">
-            <div class="icon-frame">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            </div>
-            <div class="link-meta">
-              <span class="link-name">LinkedIn</span>
-              <span class="link-handle">Daniel Bartyzal &bull; Chief BMET</span>
-            </div>
-          </div>
-          <span class="link-action">OPEN</span>
-        </a>
-
-        <!-- Direct Email (Pro) -->
-        <button class="link-card" data-cat="pro" onclick="copyText('bartyzal9@gmail.com', 'Email address copied')">
+        <!-- Personal Email -->
+        <button class="link-card" data-cat="non-pro" onclick="copyText('bartyzal9@gmail.com', 'Personal email copied')">
           <div class="link-left">
             <div class="icon-frame">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
             </div>
             <div class="link-meta">
-              <span class="link-name">Direct Email</span>
+              <span class="link-name">Personal Email</span>
               <span class="link-handle">bartyzal9@gmail.com</span>
             </div>
           </div>
           <span class="link-action">COPY</span>
         </button>
 
-        <!-- Instagram (Social) -->
-        <a class="link-card" data-cat="social" href="https://www.instagram.com/barteezyy/" target="_blank" rel="noopener">
+        <!-- Instagram -->
+        <a class="link-card" data-cat="non-pro" href="https://www.instagram.com/barteezyy/" target="_blank" rel="noopener">
           <div class="link-left">
             <div class="icon-frame">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
@@ -623,8 +679,8 @@
           <span class="link-action">OPEN</span>
         </a>
 
-        <!-- Discord (Social) -->
-        <button class="link-card" data-cat="social" onclick="copyText('barteezyy', 'Discord username copied')">
+        <!-- Discord -->
+        <button class="link-card" data-cat="non-pro" onclick="copyText('barteezyy', 'Discord username copied')">
           <div class="link-left">
             <div class="icon-frame">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12h.01M15 12h.01M7.5 4.5c3-.8 6-.8 9 0l1.5 3c2 1.5 3 4.5 2.5 8.5-2 1.8-4.2 2.5-6 2.5l-1-2h-3l-1 2c-1.8 0-4-.7-6-2.5-.5-4 .5-7 2.5-8.5l1.5-3z"/></svg>
@@ -637,8 +693,8 @@
           <span class="link-action">COPY</span>
         </button>
 
-        <!-- Spotify (Social) -->
-        <a class="link-card" data-cat="social" href="https://open.spotify.com/user/bartyzal9" target="_blank" rel="noopener">
+        <!-- Spotify -->
+        <a class="link-card" data-cat="non-pro" href="https://open.spotify.com/user/bartyzal9" target="_blank" rel="noopener">
           <div class="link-left">
             <div class="icon-frame">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14.5c2.5-1 5.5-1 8 0M7 11.5c3.2-1.2 6.8-1.2 10 0M6.5 8.5c3.8-1.5 7.2-1.5 11 0"/></svg>
@@ -653,11 +709,11 @@
       </div>
     </section>
 
-    <!-- Gaming Roster (Shown in All & Social) -->
-    <section class="hub-section" data-section-cat="social">
+    <!-- Non-Professional: Gaming Roster -->
+    <section class="hub-section is-hidden" data-section-cat="non-pro">
       <div class="section-label">Gaming Networks</div>
       <div class="links-group">
-        <button class="link-card" data-cat="social" onclick="copyText('IntenseApathy9', 'Xbox Gamertag copied')">
+        <button class="link-card" data-cat="non-pro" onclick="copyText('IntenseApathy9', 'Xbox Gamertag copied')">
           <div class="link-left">
             <div class="icon-frame">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M6.5 6.5c3.5 2.5 7.5 2.5 11 0M7 17.5c2.5-4.5 7.5-4.5 10 0"/></svg>
@@ -670,7 +726,7 @@
           <span class="link-action">COPY</span>
         </button>
 
-        <button class="link-card" data-cat="social" onclick="copyText('kryptonianutopian', 'Epic Games handle copied')">
+        <button class="link-card" data-cat="non-pro" onclick="copyText('kryptonianutopian', 'Epic Games handle copied')">
           <div class="link-left">
             <div class="icon-frame">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -683,7 +739,7 @@
           <span class="link-action">COPY</span>
         </button>
 
-        <button class="link-card" data-cat="social" onclick="copyText('SW-1315-0104-9923', 'Nintendo Friend Code copied')">
+        <button class="link-card" data-cat="non-pro" onclick="copyText('SW-1315-0104-9923', 'Nintendo Friend Code copied')">
           <div class="link-left">
             <div class="icon-frame">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="8" height="16" rx="4"/><rect x="13" y="4" width="8" height="16" rx="4"/><circle cx="7" cy="9" r="1.2" fill="currentColor"/><circle cx="17" cy="14" r="1.2" fill="currentColor"/></svg>
@@ -704,9 +760,9 @@
       <div class="qr-dock">
         <div class="qr-tabs">
           <button class="qr-tab active" data-qr="hub" onclick="setQRMode('hub', this)">Hub URL</button>
+          <button class="qr-tab" data-qr="linkedin" onclick="setQRMode('linkedin', this)">LinkedIn</button>
           <button class="qr-tab" data-qr="venmo" onclick="setQRMode('venmo', this)">Venmo</button>
           <button class="qr-tab" data-qr="cashapp" onclick="setQRMode('cashapp', this)">Cash App</button>
-          <button class="qr-tab" data-qr="linkedin" onclick="setQRMode('linkedin', this)">LinkedIn</button>
         </div>
         <div id="qr-box" class="qr-display-frame" aria-label="QR Code"></div>
         <div id="qr-caption" class="qr-caption">Scan to open this Hub</div>
@@ -726,7 +782,6 @@
        Supports Byte Mode, EC Level L, Versions 1-10 (Up to 271 bytes)
        ========================================================================= */
     const OfflineQR = (() => {
-      // Capacities (total data codewords) and EC codewords per block for Level L, v1..v10
       const VERSIONS = [
         null,
         { total: 19, ec: 7, blocks: 1, align: [] },
@@ -741,7 +796,6 @@
         { total: 274, ec: 18, blocks: 4, align: [6, 28, 50] }
       ];
 
-      // GF(256) log/exp tables for Reed-Solomon
       const EXP = new Uint8Array(512);
       const LOG = new Uint8Array(256);
       let x = 1;
@@ -800,7 +854,6 @@
           for (let i = len - 1; i >= 0; i--) bits.push((val >> i) & 1);
         };
 
-        // Byte mode indicator (0100)
         pushBits(4, 4);
         pushBits(bytes.length, ver < 10 ? 8 : 16);
         for (const b of bytes) pushBits(b, 8);
@@ -821,7 +874,6 @@
           padToggle = !padToggle;
         }
 
-        // Interleave blocks + EC
         const numBlocks = vInfo.blocks;
         const blockLen = Math.floor(vInfo.total / numBlocks);
         const extra = vInfo.total % numBlocks;
@@ -865,7 +917,6 @@
           }
         };
 
-        // Finder patterns + separators
         const drawFinder = (r0, c0) => {
           for (let dr = -1; dr <= 7; dr++) {
             for (let dc = -1; dc <= 7; dc++) {
@@ -880,7 +931,6 @@
         drawFinder(0, size - 7);
         drawFinder(size - 7, 0);
 
-        // Alignment patterns
         const pos = vInfo.align;
         for (let i = 0; i < pos.length; i++) {
           for (let j = 0; j < pos.length; j++) {
@@ -895,13 +945,11 @@
           }
         }
 
-        // Timing patterns
         for (let i = 8; i < size - 8; i++) {
           if (!rsv[6][i]) setMod(6, i, i % 2 === 0, true);
           if (!rsv[i][6]) setMod(i, 6, i % 2 === 0, true);
         }
 
-        // Dark module & reserve format areas
         setMod(size - 8, 8, 1, true);
         for (let i = 0; i < 9; i++) {
           if (!rsv[8][i]) rsv[8][i] = 1;
@@ -912,7 +960,6 @@
           rsv[size - 1 - i][8] = 1;
         }
 
-        // Place data bits (upward/downward 2-column zig-zag)
         let bitIdx = 0;
         const totalBits = finalBytes.length * 8;
         let up = true;
@@ -928,7 +975,6 @@
                   dark = (finalBytes[bitIdx >> 3] >> (7 - (bitIdx & 7))) & 1;
                   bitIdx++;
                 }
-                // Apply Mask 0: (r + c) % 2 === 0
                 if ((r + c) % 2 === 0) dark ^= 1;
                 mat[r][c] = dark;
               }
@@ -937,17 +983,14 @@
           up = !up;
         }
 
-        // Format info for Level L (01) + Mask 0 (000) -> 0x77c4
         const fmt = 0x77c4;
         for (let i = 0; i < 15; i++) {
           const bit = (fmt >> i) & 1;
-          // Around top-left
           if (i < 6) setMod(i, 8, bit, true);
           else if (i < 8) setMod(i + 1, 8, bit, true);
           else if (i === 8) setMod(8, 7, bit, true);
           else setMod(8, 14 - i, bit, true);
 
-          // Split between bottom-left and top-right
           if (i < 8) setMod(8, size - 1 - i, bit, true);
           else setMod(size - 15 + i, 8, bit, true);
         }
@@ -974,35 +1017,31 @@
     })();
 
     /* =========================================================================
-       Hub Logic: View Filter, Offline QR Dock, vCard Generator, & Share
+       Hub Logic: View Filter (Default 'pro'), Offline QR Dock, vCard, & Share
        ========================================================================= */
     const baseHubUrl = window.location.href.split('#')[0];
 
     const viewProfiles = {
-      all: {
-        subtitle: "Chief BMET \u2022 Maker \u2022 Central AR",
-        bio: "I oversee clinical biomedical engineering and water purification operations by day, and spend my off-hours 3D printing functional parts, carving local pump tracks on a surfskate, or gaming.",
-        sectionTitle: "Connect & Social",
-        defaultQR: "hub"
-      },
       pro: {
-        subtitle: "Chief BMET \u2022 Facility Operations \u2022 Central AR",
-        bio: "Chief Biomedical Equipment Technician overseeing clinical equipment maintenance, AAMI water purification systems, QAPI compliance, and vendor operations across Central Arkansas.",
-        sectionTitle: "Professional Channels",
-        defaultQR: "linkedin"
-      },
-      social: {
-        subtitle: "Maker \u2022 Surfskater \u2022 Gamer",
-        bio: "Fabricating functional 3D-printed parts, carving local Central Arkansas pump tracks on a surfskate, and squading up on Xbox, Switch, and Fortnite.",
-        sectionTitle: "Social Channels",
+        subtitle: "Chief BMET \u2022 Dialysis Clinic, Inc. (DCI)",
+        bio: "Chief Biomedical Equipment Technician overseeing clinical equipment maintenance, AAMI water purification systems, facility operations, and technical logistics across North Little Rock & McCrory, AR.",
         defaultQR: "hub"
+      },
+      "non-pro": {
+        subtitle: "Maker \u2022 Skater \u2022 Gamer",
+        bio: "Spending my off-hours fabricating functional 3D-printed parts, carving local pump tracks, and gaming on Xbox, Switch, and PC.",
+        defaultQR: "venmo"
       }
     };
 
     const qrModes = {
       hub: {
         url: baseHubUrl,
-        caption: "Scan to open Dan's Personal Hub"
+        caption: "Scan to open Dan's Contact Hub"
+      },
+      linkedin: {
+        url: "https://www.linkedin.com/search/results/all/?keywords=Daniel%20Bartyzal",
+        caption: "LinkedIn \u2022 Daniel Bartyzal"
       },
       venmo: {
         url: "https://venmo.com/u/Daniel-Bartyzal",
@@ -1011,15 +1050,11 @@
       cashapp: {
         url: "https://cash.app/$DanB999",
         caption: "Cash App \u2022 $DanB999"
-      },
-      linkedin: {
-        url: "https://www.linkedin.com/search/results/all/?keywords=Daniel%20Bartyzal",
-        caption: "LinkedIn \u2022 Daniel Bartyzal"
       }
     };
 
     function setViewFilter(mode) {
-      const targetMode = viewProfiles[mode] ? mode : 'all';
+      const targetMode = viewProfiles[mode] ? mode : 'pro';
       const profile = viewProfiles[targetMode];
 
       document.querySelectorAll('.filter-btn').forEach(btn => {
@@ -1028,24 +1063,23 @@
 
       document.getElementById('profile-subtitle').textContent = profile.subtitle;
       document.getElementById('profile-bio').textContent = profile.bio;
-      document.getElementById('connect-section-label').textContent = profile.sectionTitle;
 
       document.querySelectorAll('.hub-section').forEach(sec => {
         const allowed = sec.dataset.sectionCat.split(' ');
-        const showSec = targetMode === 'all' || allowed.includes(targetMode);
+        const showSec = allowed.includes(targetMode);
         sec.classList.toggle('is-hidden', !showSec);
       });
 
       document.querySelectorAll('.link-card[data-cat]').forEach(card => {
         const allowed = card.dataset.cat.split(' ');
-        const showCard = targetMode === 'all' || allowed.includes(targetMode);
+        const showCard = allowed.includes(targetMode);
         card.classList.toggle('is-hidden', !showCard);
       });
 
       const qrBtn = document.querySelector(`.qr-tab[data-qr="${profile.defaultQR}"]`);
       if (qrBtn) setQRMode(profile.defaultQR, qrBtn);
 
-      const newHash = targetMode === 'all' ? window.location.pathname : `#${targetMode}`;
+      const newHash = targetMode === 'pro' ? window.location.pathname : `#${targetMode}`;
       history.replaceState(null, '', newHash);
     }
 
@@ -1076,50 +1110,52 @@
       });
     }
 
-    // 1-Tap Save Contact (.vcf) Generator
+    // 1-Tap Save Contact (.vcf) Generator — Tailored for DCI Business Trip
     function downloadVCard() {
       const vcardLines = [
         "BEGIN:VCARD",
         "VERSION:3.0",
         "N:Bartyzal;Dan;;;",
         "FN:Dan Bartyzal",
+        "ORG:Dialysis Clinic, Inc. (DCI)",
         "TITLE:Chief Biomedical Equipment Technician",
-        "EMAIL;TYPE=INTERNET:bartyzal9@gmail.com",
+        "TEL;TYPE=CELL,VOICE:501-680-6730",
+        "EMAIL;TYPE=WORK,INTERNET:daniel.bartyzal@dciinc.org",
+        "EMAIL;TYPE=HOME,INTERNET:bartyzal9@gmail.com",
         "ADR;TYPE=WORK:;;;North Little Rock;AR;;USA",
         `URL:${baseHubUrl}`,
-        "NOTE:Chief BMET • Maker • Central AR",
+        "NOTE:Chief BMET • Dialysis Clinic, Inc. (DCI) • Central AR",
         "END:VCARD"
       ];
       const blob = new Blob([vcardLines.join("\r\n")], { type: "text/vcard;charset=utf-8" });
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
-      link.download = "Dan_Bartyzal.vcf";
+      link.download = "Dan_Bartyzal_DCI.vcf";
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
-      showToast("Contact card (.vcf) downloaded");
+      showToast("DCI Contact card (.vcf) downloaded");
     }
 
     // Native Share Sheet / Fallback Copy
     function shareHub() {
       const shareData = {
-        title: "Dan Bartyzal | Personal Hub",
-        text: "Connect with Dan Bartyzal — Chief BMET • Maker • Central AR",
-        url: window.location.href
+        title: "Dan Bartyzal | Chief BMET • DCI",
+        text: "Dan Bartyzal — Chief BMET, Dialysis Clinic, Inc. (DCI) | 501-680-6730 | daniel.bartyzal@dciinc.org",
+        url: baseHubUrl
       };
       if (navigator.share) {
         navigator.share(shareData).catch(() => {});
       } else {
-        copyText(window.location.href, "Hub link copied to clipboard");
+        copyText(baseHubUrl, "Hub link copied to clipboard");
       }
     }
 
-    // Initialize Hub on Load
+    // Initialize Hub on Load (Defaults to 'pro' unless #non-pro is specified)
     const initialHash = window.location.hash.replace('#', '').toLowerCase();
-    setViewFilter(viewProfiles[initialHash] ? initialHash : 'all');
+    setViewFilter(viewProfiles[initialHash] ? initialHash : 'pro');
   </script>
 </body>
 </html>
- 
