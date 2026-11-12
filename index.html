@@ -10,28 +10,29 @@
   <meta property="og:title" content="Dan Bartyzal | Chief BMET • DCI" />
   <meta property="og:description" content="Chief Biomedical Equipment Technician at Dialysis Clinic, Inc. (DCI) — Direct phone, work email, and contact card." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#0a0a0c" />
+  <meta name="theme-color" content="#070b10" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg-obsidian: #0a0a0c;
-      --bg-card: #121216;
-      --bg-card-hover: #18181e;
-      --brass-primary: #c5a059;
-      --brass-light: #dfc286;
-      --brass-dim: rgba(197, 160, 89, 0.25);
-      --brass-glow: rgba(197, 160, 89, 0.08);
-      --text-main: #f3f1ed;
-      --text-muted: #9a9893;
-      --border-subtle: rgba(255, 255, 255, 0.07);
-      --radius-lg: 14px;
-      --radius-md: 10px;
-      --transition: all 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+      --bg-chassis: #070b10;
+      --bg-panel: #0d141d;
+      --bg-panel-hover: #131d2a;
+      --ro-cyan: #00d2ff;
+      --ro-cyan-light: #7ce8ff;
+      --ro-cyan-dim: rgba(0, 210, 255, 0.28);
+      --ro-cyan-glow: rgba(0, 210, 255, 0.1);
+      --permeate-teal: #00e5a3;
+      --steel-main: #e6eef8;
+      --steel-muted: #7f93ab;
+      --border-steel: rgba(148, 179, 214, 0.14);
+      --radius-tech: 8px;
+      --radius-sm: 5px;
+      --transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     * {
@@ -42,16 +43,19 @@
     }
 
     body {
-      background-color: var(--bg-obsidian);
+      background-color: var(--bg-chassis);
+      /* CAD Blueprint Grid + Subtle Fluid Radial Glow */
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(197, 160, 89, 0.09) 0%, transparent 55%),
-        linear-gradient(180deg, #0a0a0c 0%, #0d0d10 100%);
-      color: var(--text-main);
+        radial-gradient(circle at 50% 0%, rgba(0, 210, 255, 0.12) 0%, transparent 55%),
+        linear-gradient(rgba(0, 210, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
+      background-size: 100% 100%, 24px 24px, 24px 24px;
+      color: var(--steel-main);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding: 36px 18px 64px;
+      padding: 24px 16px 56px;
       line-height: 1.5;
     }
 
@@ -60,25 +64,95 @@
       max-width: 460px;
       display: flex;
       flex-direction: column;
-      gap: 22px;
+      gap: 20px;
     }
 
-    /* Editorial Header & Bio */
+    /* Top HMI Telemetry Strip */
+    .telemetry-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(13, 20, 29, 0.85);
+      border: 1px solid var(--border-steel);
+      border-left: 3px solid var(--permeate-teal);
+      border-radius: var(--radius-sm);
+      padding: 7px 12px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--steel-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .telemetry-status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--permeate-teal);
+      font-weight: 500;
+    }
+
+    .status-led {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--permeate-teal);
+      box-shadow: 0 0 8px var(--permeate-teal);
+      animation: pulseLed 2.4s infinite ease-in-out;
+    }
+
+    @keyframes pulseLed {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+
+    /* Technical Header & Gauge Avatar */
     .profile-header {
+      background: linear-gradient(180deg, rgba(13, 20, 29, 0.9) 0%, rgba(9, 14, 21, 0.95) 100%);
+      border: 1px solid var(--border-steel);
+      border-radius: var(--radius-tech);
+      padding: 22px 18px 18px;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 13px;
+      gap: 12px;
+      position: relative;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Machined Corner Accents */
+    .profile-header::before,
+    .profile-header::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-color: var(--ro-cyan);
+      border-style: solid;
+      pointer-events: none;
+    }
+
+    .profile-header::before {
+      top: -1px;
+      left: -1px;
+      border-width: 2px 0 0 2px;
+      border-top-left-radius: var(--radius-tech);
+    }
+
+    .profile-header::after {
+      top: -1px;
+      right: -1px;
+      border-width: 2px 2px 0 0;
+      border-top-right-radius: var(--radius-tech);
     }
 
     .avatar-frame {
-      width: 96px;
-      height: 96px;
+      width: 92px;
+      height: 92px;
       border-radius: 50%;
       padding: 3px;
-      background: linear-gradient(135deg, var(--brass-light), #6e5525, var(--brass-primary));
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), 0 0 20px var(--brass-glow);
+      background: conic-gradient(from 180deg, var(--ro-cyan), #1a3047, var(--permeate-teal), var(--ro-cyan));
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), 0 0 18px var(--ro-cyan-glow);
       position: relative;
     }
 
@@ -86,16 +160,26 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: var(--bg-card);
+      background: var(--bg-chassis);
+      border: 2px dashed rgba(0, 210, 255, 0.3);
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      font-weight: 600;
-      color: var(--brass-primary);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--ro-cyan-light);
       letter-spacing: 0.04em;
+    }
+
+    .avatar-inner small {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--steel-muted);
+      letter-spacing: 0.14em;
+      margin-top: -4px;
     }
 
     .avatar-inner img {
@@ -105,29 +189,33 @@
     }
 
     .profile-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.25rem;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      color: var(--text-main);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.95rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: var(--steel-main);
       line-height: 1.15;
     }
 
     .profile-subtitle {
-      font-size: 0.76rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--brass-primary);
+      letter-spacing: 0.14em;
+      color: var(--ro-cyan);
       font-weight: 500;
-      margin-top: -4px;
+      background: rgba(0, 210, 255, 0.08);
+      border: 1px solid rgba(0, 210, 255, 0.22);
+      padding: 4px 10px;
+      border-radius: 4px;
     }
 
     .profile-bio {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      font-weight: 300;
+      font-size: 0.86rem;
+      color: var(--steel-muted);
+      font-weight: 400;
       max-width: 390px;
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     /* Quick Action Bar: Save vCard & Native Share */
@@ -136,7 +224,7 @@
       grid-template-columns: 1.35fr 1fr;
       gap: 10px;
       width: 100%;
-      margin-top: 4px;
+      margin-top: 6px;
     }
 
     .action-btn {
@@ -145,11 +233,12 @@
       justify-content: center;
       gap: 8px;
       padding: 11px 14px;
-      border-radius: var(--radius-md);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.03em;
+      border-radius: var(--radius-sm);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
       cursor: pointer;
       transition: var(--transition);
       text-decoration: none;
@@ -162,52 +251,53 @@
     }
 
     .action-btn-primary {
-      background: linear-gradient(135deg, rgba(197, 160, 89, 0.24), rgba(197, 160, 89, 0.09));
-      border: 1px solid var(--brass-primary);
-      color: var(--brass-light);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+      background: linear-gradient(135deg, rgba(0, 210, 255, 0.22), rgba(0, 210, 255, 0.07));
+      border: 1px solid var(--ro-cyan);
+      color: var(--ro-cyan-light);
+      box-shadow: 0 4px 16px rgba(0, 210, 255, 0.15);
     }
 
     .action-btn-primary:hover {
-      background: linear-gradient(135deg, rgba(197, 160, 89, 0.34), rgba(197, 160, 89, 0.15));
-      transform: translateY(-2px);
+      background: linear-gradient(135deg, rgba(0, 210, 255, 0.32), rgba(0, 210, 255, 0.14));
+      transform: translateY(-1px);
     }
 
     .action-btn-secondary {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-main);
+      background: var(--bg-chassis);
+      border: 1px solid var(--border-steel);
+      color: var(--steel-main);
     }
 
     .action-btn-secondary:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--brass-dim);
-      color: var(--brass-light);
-      transform: translateY(-2px);
+      background: var(--bg-panel-hover);
+      border-color: var(--ro-cyan-dim);
+      color: var(--ro-cyan-light);
+      transform: translateY(-1px);
     }
 
-    /* Top View Filter Toggle (2 Tabs: DCI Professional vs Non-Professional) */
+    /* HMI Selector Switch (2 Tabs: DCI Professional vs Non-Professional) */
     .view-filter-wrap {
-      background: #0c0c10;
-      border: 1px solid var(--brass-dim);
-      border-radius: 12px;
+      background: #05080c;
+      border: 1px solid var(--border-steel);
+      border-radius: var(--radius-tech);
       padding: 5px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 6px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7);
     }
 
     .filter-btn {
       background: transparent;
       border: 1px solid transparent;
-      color: var(--text-muted);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.78rem;
+      color: var(--steel-muted);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.74rem;
       font-weight: 500;
-      letter-spacing: 0.04em;
-      padding: 10px 10px;
-      border-radius: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 10px 8px;
+      border-radius: var(--radius-sm);
       cursor: pointer;
       transition: var(--transition);
       display: flex;
@@ -218,53 +308,59 @@
     }
 
     .filter-btn:hover {
-      color: var(--text-main);
+      color: var(--steel-main);
     }
 
     .filter-btn.active {
-      background: linear-gradient(135deg, rgba(197, 160, 89, 0.22), rgba(197, 160, 89, 0.07));
-      color: var(--brass-light);
-      border-color: var(--brass-primary);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+      background: linear-gradient(180deg, rgba(0, 210, 255, 0.18), rgba(0, 210, 255, 0.06));
+      color: var(--ro-cyan-light);
+      border-color: var(--ro-cyan);
+      box-shadow: 0 2px 12px rgba(0, 210, 255, 0.15);
     }
 
     .filter-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: var(--brass-primary);
-      opacity: 0;
-      transform: scale(0.5);
+      background: var(--steel-muted);
+       opacity: 0.4;
       transition: var(--transition);
     }
 
     .filter-btn.active .filter-dot {
+      background: var(--ro-cyan);
+      box-shadow: 0 0 8px var(--ro-cyan);
       opacity: 1;
-      transform: scale(1);
     }
 
     .is-hidden {
       display: none !important;
     }
 
-    /* Section Labels */
+    /* Schematic Section Labels */
     .section-label {
-      font-size: 0.7rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--brass-primary);
+      letter-spacing: 0.18em;
+      color: var(--ro-cyan);
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 10px;
+      margin-bottom: 11px;
       font-weight: 600;
+    }
+
+    .section-label::before {
+      content: "//";
+      color: var(--permeate-teal);
     }
 
     .section-label::after {
       content: "";
       flex: 1;
       height: 1px;
-      background: linear-gradient(90deg, var(--brass-dim), transparent);
+      background: linear-gradient(90deg, var(--ro-cyan-dim), transparent);
     }
 
     /* Direct Payment Icon Row */
@@ -275,45 +371,46 @@
     }
 
     .pay-pill {
-      background: var(--bg-card);
-      border: 1px solid var(--brass-dim);
-      border-radius: var(--radius-md);
+      background: var(--bg-panel);
+      border: 1px solid var(--border-steel);
+      border-top: 2px solid var(--ro-cyan-dim);
+      border-radius: var(--radius-tech);
       padding: 12px 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 6px;
       text-decoration: none;
-      color: var(--text-main);
+      color: var(--steel-main);
       transition: var(--transition);
       cursor: pointer;
     }
 
     .pay-pill:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--brass-primary);
+      background: var(--bg-panel-hover);
+      border-color: var(--ro-cyan);
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
     }
 
     .pay-pill svg {
       width: 20px;
       height: 20px;
-      color: var(--brass-primary);
+      color: var(--ro-cyan);
     }
 
     .pay-title {
       font-size: 0.78rem;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .pay-handle {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.66rem;
-      color: var(--text-muted);
+      font-size: 0.65rem;
+      color: var(--steel-muted);
     }
 
-    /* Link Cards */
+    /* Machined Link Cards */
     .links-group {
       display: flex;
       flex-direction: column;
@@ -321,15 +418,16 @@
     }
 
     .link-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 13px 16px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-steel);
+      border-left: 3px solid var(--ro-cyan-dim);
+      border-radius: var(--radius-tech);
+      padding: 13px 15px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       text-decoration: none;
-      color: var(--text-main);
+      color: var(--steel-main);
       transition: var(--transition);
       cursor: pointer;
       width: 100%;
@@ -339,37 +437,38 @@
     }
 
     .link-card:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--brass-dim);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      background: var(--bg-panel-hover);
+      border-color: var(--ro-cyan-dim);
+      border-left-color: var(--ro-cyan);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
     }
 
     .link-left {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 13px;
       min-width: 0;
     }
 
     .icon-frame {
       width: 40px;
       height: 40px;
-      border-radius: 9px;
-      background: rgba(197, 160, 89, 0.07);
-      border: 1px solid var(--brass-dim);
+      border-radius: var(--radius-sm);
+      background: rgba(0, 210, 255, 0.06);
+      border: 1px solid var(--ro-cyan-dim);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      color: var(--brass-primary);
+      color: var(--ro-cyan);
       transition: var(--transition);
     }
 
     .link-card:hover .icon-frame {
-      background: rgba(197, 160, 89, 0.15);
-      border-color: var(--brass-primary);
-      color: var(--brass-light);
+      background: rgba(0, 210, 255, 0.14);
+      border-color: var(--ro-cyan);
+      color: var(--ro-cyan-light);
     }
 
     .icon-frame svg {
@@ -384,15 +483,15 @@
     }
 
     .link-name {
-      font-size: 0.92rem;
-      font-weight: 500;
-      color: var(--text-main);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--steel-main);
     }
 
     .link-handle {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.74rem;
-      color: var(--text-muted);
+      font-size: 0.73rem;
+      color: var(--steel-muted);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -406,13 +505,14 @@
     }
 
     .link-action {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-family: 'JetBrains Mono', monospace;
-      color: var(--brass-primary);
+      font-weight: 500;
+      color: var(--ro-cyan-light);
       padding: 5px 9px;
-      border-radius: 6px;
-      border: 1px solid rgba(197, 160, 89, 0.2);
-      background: rgba(197, 160, 89, 0.05);
+      border-radius: 4px;
+      border: 1px solid rgba(0, 210, 255, 0.28);
+      background: rgba(0, 210, 255, 0.07);
       flex-shrink: 0;
       text-decoration: none;
       cursor: pointer;
@@ -420,79 +520,9 @@
     }
 
     .link-action:hover {
-      background: rgba(197, 160, 89, 0.18);
-      border-color: var(--brass-primary);
-      color: var(--brass-light);
-    }
-
-    /* 4-Mode Offline SVG QR Code Dock */
-    .qr-dock {
-      background: var(--bg-card);
-      border: 1px solid var(--brass-dim);
-      border-radius: var(--radius-lg);
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
-    }
-
-    .qr-tabs {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-      width: 100%;
-      background: #0b0b0e;
-      padding: 5px;
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border-subtle);
-    }
-
-    .qr-tab {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.74rem;
-      font-weight: 500;
-      padding: 8px 4px;
-      border-radius: 7px;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .qr-tab.active {
-      background: linear-gradient(135deg, rgba(197, 160, 89, 0.22), rgba(197, 160, 89, 0.08));
-      color: var(--brass-light);
-      border: 1px solid var(--brass-dim);
-    }
-
-    .qr-display-frame {
-      background: #ffffff;
-      padding: 12px;
-      border-radius: 12px;
-      border: 2px solid var(--brass-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 192px;
-      height: 192px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .qr-display-frame svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-      shape-rendering: crispEdges;
-    }
-
-    .qr-caption {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      color: var(--brass-light);
-      text-align: center;
+      background: rgba(0, 210, 255, 0.22);
+      border-color: var(--ro-cyan);
+      color: #ffffff;
     }
 
     /* Toast Notification */
@@ -501,14 +531,15 @@
       bottom: 24px;
       left: 50%;
       transform: translateX(-50%) translateY(20px);
-      background: #191920;
-      color: var(--brass-light);
-      border: 1px solid var(--brass-primary);
+      background: #0d1622;
+      color: var(--ro-cyan-light);
+      border: 1px solid var(--ro-cyan);
       padding: 10px 18px;
-      border-radius: 999px;
-      font-size: 0.8rem;
+      border-radius: var(--radius-sm);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
       font-weight: 500;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
       opacity: 0;
       pointer-events: none;
       transition: all 0.25s ease;
@@ -523,26 +554,41 @@
 
     footer {
       text-align: center;
-      font-size: 0.72rem;
-      color: rgba(154, 152, 147, 0.5);
-      letter-spacing: 0.08em;
-      margin-top: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.66rem;
+      color: rgba(127, 147, 171, 0.55);
+      letter-spacing: 0.1em;
+      margin-top: 10px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(148, 179, 214, 0.12);
     }
   </style>
 </head>
 <body>
 
   <main class="hub-container">
+    <!-- Top Water Treatment / Biomedical Telemetry Bar -->
+    <div class="telemetry-bar" aria-hidden="true">
+      <div class="telemetry-status">
+        <span class="status-led"></span>
+        <span>SYS.RO-LOOP // ONLINE</span>
+      </div>
+      <span>0.08 &mu;S/cm &bull; AAMI STD</span>
+    </div>
+
     <!-- Header / Bio -->
     <header class="profile-header">
       <div class="avatar-frame">
-        <!-- Optional: Replace the span below with <img src="profile.jpg" alt="Dan Bartyzal"> if you upload a photo -->
-        <div class="avatar-inner"><span>DB</span></div>
+        <!-- Optional: Replace the contents of avatar-inner with <img src="profile.jpg" alt="Dan Bartyzal"> -->
+        <div class="avatar-inner">
+          <span>DB</span>
+          <small>BMET</small>
+        </div>
       </div>
       <h1 class="profile-name">Dan Bartyzal</h1>
       <p id="profile-subtitle" class="profile-subtitle">Chief BMET &bull; Dialysis Clinic, Inc. (DCI)</p>
       <p id="profile-bio" class="profile-bio">
-        Chief Biomedical Equipment Technician overseeing clinical equipment maintenance, AAMI water purification systems, facility operations, and technical logistics across North Little Rock &amp; McCrory, AR.
+        Chief Biomedical Equipment Technician overseeing hemodialysis machinery, AAMI reverse osmosis water purification loops, and clinical facility operations across Central AR.
       </p>
 
       <!-- 1-Tap Save Contact (.vcf) & Native Share -->
@@ -570,7 +616,7 @@
 
     <!-- DCI & Professional Contact Section (Default Active View) -->
     <section class="hub-section" data-section-cat="pro">
-      <div class="section-label">DCI Direct Contact</div>
+      <div class="section-label">DCI Direct Channels</div>
       <div class="links-group">
         <!-- Mobile / Cell Call & Copy -->
         <div class="link-card" data-cat="pro" onclick="window.location.href='tel:5016806730'">
@@ -754,23 +800,8 @@
       </div>
     </section>
 
-    <!-- 4-Mode Offline QR Code Dock -->
-    <section>
-      <div class="section-label">Quick Share QR Dock (Offline Ready)</div>
-      <div class="qr-dock">
-        <div class="qr-tabs">
-          <button class="qr-tab active" data-qr="hub" onclick="setQRMode('hub', this)">Hub URL</button>
-          <button class="qr-tab" data-qr="linkedin" onclick="setQRMode('linkedin', this)">LinkedIn</button>
-          <button class="qr-tab" data-qr="venmo" onclick="setQRMode('venmo', this)">Venmo</button>
-          <button class="qr-tab" data-qr="cashapp" onclick="setQRMode('cashapp', this)">Cash App</button>
-        </div>
-        <div id="qr-box" class="qr-display-frame" aria-label="QR Code"></div>
-        <div id="qr-caption" class="qr-caption">Scan to open this Hub</div>
-      </div>
-    </section>
-
     <footer>
-      OBSIDIAN &amp; BRASS EDITION &bull; DAN BARTYZAL
+      BIOMEDICAL &amp; WATER PURIFICATION HMI &bull; DAN BARTYZAL
     </footer>
   </main>
 
@@ -778,278 +809,18 @@
 
   <script>
     /* =========================================================================
-       Self-Contained Offline ISO QR Code SVG Engine (Zero External Dependencies)
-       Supports Byte Mode, EC Level L, Versions 1-10 (Up to 271 bytes)
-       ========================================================================= */
-    const OfflineQR = (() => {
-      const VERSIONS = [
-        null,
-        { total: 19, ec: 7, blocks: 1, align: [] },
-        { total: 34, ec: 10, blocks: 1, align: [6, 18] },
-        { total: 55, ec: 15, blocks: 1, align: [6, 22] },
-        { total: 80, ec: 20, blocks: 1, align: [6, 26] },
-        { total: 108, ec: 26, blocks: 1, align: [6, 30] },
-        { total: 136, ec: 18, blocks: 2, align: [6, 34] },
-        { total: 156, ec: 20, blocks: 2, align: [6, 22, 38] },
-        { total: 194, ec: 24, blocks: 2, align: [6, 24, 42] },
-        { total: 232, ec: 30, blocks: 2, align: [6, 26, 46] },
-        { total: 274, ec: 18, blocks: 4, align: [6, 28, 50] }
-      ];
-
-      const EXP = new Uint8Array(512);
-      const LOG = new Uint8Array(256);
-      let x = 1;
-      for (let i = 0; i < 255; i++) {
-        EXP[i] = x;
-        LOG[x] = i;
-        x = (x << 1) ^ (x & 128 ? 0x11d : 0);
-      }
-      for (let i = 255; i < 512; i++) EXP[i] = EXP[i - 255];
-
-      function gfMul(a, b) {
-        return a === 0 || b === 0 ? 0 : EXP[LOG[a] + LOG[b]];
-      }
-
-      function rsGenPoly(degree) {
-        let poly = [1];
-        for (let i = 0; i < degree; i++) {
-          const next = new Array(poly.length + 1).fill(0);
-          for (let j = 0; j < poly.length; j++) {
-            next[j] ^= poly[j];
-            next[j + 1] ^= gfMul(poly[j], EXP[i]);
-          }
-          poly = next;
-        }
-        return poly;
-      }
-
-      function rsEncode(data, ecLen) {
-        const gen = rsGenPoly(ecLen);
-        const msg = new Uint8Array(data.length + ecLen);
-        msg.set(data);
-        for (let i = 0; i < data.length; i++) {
-          const coef = msg[i];
-          if (coef !== 0) {
-            for (let j = 0; j < gen.length; j++) {
-              msg[i + j] ^= gfMul(gen[j], coef);
-            }
-          }
-        }
-        return msg.slice(data.length);
-      }
-
-      function encodeData(text) {
-        const bytes = new TextEncoder().encode(text);
-        let ver = 1;
-        while (ver <= 10) {
-          const cap = VERSIONS[ver].total;
-          const headerBits = ver < 10 ? 12 : 20;
-          if (bytes.length * 8 + headerBits <= cap * 8) break;
-          ver++;
-        }
-        if (ver > 10) ver = 10;
-        const vInfo = VERSIONS[ver];
-        const bits = [];
-        const pushBits = (val, len) => {
-          for (let i = len - 1; i >= 0; i--) bits.push((val >> i) & 1);
-        };
-
-        pushBits(4, 4);
-        pushBits(bytes.length, ver < 10 ? 8 : 16);
-        for (const b of bytes) pushBits(b, 8);
-
-        const maxBits = vInfo.total * 8;
-        pushBits(0, Math.min(4, maxBits - bits.length));
-        while (bits.length % 8 !== 0) bits.push(0);
-
-        const dataBytes = new Uint8Array(vInfo.total);
-        for (let i = 0; i < bits.length / 8; i++) {
-          let b = 0;
-          for (let j = 0; j < 8; j++) b = (b << 1) | bits[i * 8 + j];
-          dataBytes[i] = b;
-        }
-        let padToggle = true;
-        for (let i = bits.length / 8; i < vInfo.total; i++) {
-          dataBytes[i] = padToggle ? 0xec : 0x11;
-          padToggle = !padToggle;
-        }
-
-        const numBlocks = vInfo.blocks;
-        const blockLen = Math.floor(vInfo.total / numBlocks);
-        const extra = vInfo.total % numBlocks;
-        const dataBlocks = [];
-        const ecBlocks = [];
-        let offset = 0;
-        for (let b = 0; b < numBlocks; b++) {
-          const len = blockLen + (b >= numBlocks - extra ? 1 : 0);
-          const slice = dataBytes.slice(offset, offset + len);
-          offset += len;
-          dataBlocks.push(slice);
-          ecBlocks.push(rsEncode(slice, vInfo.ec));
-        }
-
-        const finalBytes = [];
-        const maxBlockLen = blockLen + (extra > 0 ? 1 : 0);
-        for (let i = 0; i < maxBlockLen; i++) {
-          for (let b = 0; b < numBlocks; b++) {
-            if (i < dataBlocks[b].length) finalBytes.push(dataBlocks[b][i]);
-          }
-        }
-        for (let i = 0; i < vInfo.ec; i++) {
-          for (let b = 0; b < numBlocks; b++) {
-            finalBytes.push(ecBlocks[b][i]);
-          }
-        }
-
-        return { ver, vInfo, finalBytes };
-      }
-
-      function buildMatrix(text) {
-        const { ver, vInfo, finalBytes } = encodeData(text);
-        const size = ver * 4 + 17;
-        const mat = Array.from({ length: size }, () => new Int8Array(size));
-        const rsv = Array.from({ length: size }, () => new Uint8Array(size));
-
-        const setMod = (r, c, val, reserve = true) => {
-          if (r >= 0 && r < size && c >= 0 && c < size) {
-            mat[r][c] = val ? 1 : 0;
-            if (reserve) rsv[r][c] = 1;
-          }
-        };
-
-        const drawFinder = (r0, c0) => {
-          for (let dr = -1; dr <= 7; dr++) {
-            for (let dc = -1; dc <= 7; dc++) {
-              const inOuter = dr >= 0 && dr <= 6 && dc >= 0 && dc <= 6;
-              const onBorder = dr === 0 || dr === 6 || dc === 0 || dc === 6;
-              const inInner = dr >= 2 && dr <= 4 && dc >= 2 && dc <= 4;
-              setMod(r0 + dr, c0 + dc, inOuter && (onBorder || inInner), true);
-            }
-          }
-        };
-        drawFinder(0, 0);
-        drawFinder(0, size - 7);
-        drawFinder(size - 7, 0);
-
-        const pos = vInfo.align;
-        for (let i = 0; i < pos.length; i++) {
-          for (let j = 0; j < pos.length; j++) {
-            if ((i === 0 && j === 0) || (i === 0 && j === pos.length - 1) || (i === pos.length - 1 && j === 0)) continue;
-            const r0 = pos[i], c0 = pos[j];
-            for (let dr = -2; dr <= 2; dr++) {
-              for (let dc = -2; dc <= 2; dc++) {
-                const dark = Math.max(Math.abs(dr), Math.abs(dc)) !== 1;
-                setMod(r0 + dr, c0 + dc, dark, true);
-              }
-            }
-          }
-        }
-
-        for (let i = 8; i < size - 8; i++) {
-          if (!rsv[6][i]) setMod(6, i, i % 2 === 0, true);
-          if (!rsv[i][6]) setMod(i, 6, i % 2 === 0, true);
-        }
-
-        setMod(size - 8, 8, 1, true);
-        for (let i = 0; i < 9; i++) {
-          if (!rsv[8][i]) rsv[8][i] = 1;
-          if (!rsv[i][8]) rsv[i][8] = 1;
-        }
-        for (let i = 0; i < 8; i++) {
-          rsv[8][size - 1 - i] = 1;
-          rsv[size - 1 - i][8] = 1;
-        }
-
-        let bitIdx = 0;
-        const totalBits = finalBytes.length * 8;
-        let up = true;
-        for (let right = size - 1; right >= 1; right -= 2) {
-          if (right === 6) right = 5;
-          for (let v = 0; v < size; v++) {
-            const r = up ? size - 1 - v : v;
-            for (let j = 0; j < 2; j++) {
-              const c = right - j;
-              if (!rsv[r][c]) {
-                let dark = 0;
-                if (bitIdx < totalBits) {
-                  dark = (finalBytes[bitIdx >> 3] >> (7 - (bitIdx & 7))) & 1;
-                  bitIdx++;
-                }
-                if ((r + c) % 2 === 0) dark ^= 1;
-                mat[r][c] = dark;
-              }
-            }
-          }
-          up = !up;
-        }
-
-        const fmt = 0x77c4;
-        for (let i = 0; i < 15; i++) {
-          const bit = (fmt >> i) & 1;
-          if (i < 6) setMod(i, 8, bit, true);
-          else if (i < 8) setMod(i + 1, 8, bit, true);
-          else if (i === 8) setMod(8, 7, bit, true);
-          else setMod(8, 14 - i, bit, true);
-
-          if (i < 8) setMod(8, size - 1 - i, bit, true);
-          else setMod(size - 15 + i, 8, bit, true);
-        }
-
-        return { mat, size };
-      }
-
-      function toSVG(text) {
-        const { mat, size } = buildMatrix(text);
-        const margin = 2;
-        const full = size + margin * 2;
-        let path = "";
-        for (let r = 0; r < size; r++) {
-          for (let c = 0; c < size; c++) {
-            if (mat[r][c]) {
-              path += `M${c + margin},${r + margin}h1v1h-1z`;
-            }
-          }
-        }
-        return `<svg viewBox="0 0 ${full} ${full}" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#ffffff"/><path d="${path}" fill="#0a0a0c"/></svg>`;
-      }
-
-      return { toSVG };
-    })();
-
-    /* =========================================================================
-       Hub Logic: View Filter (Default 'pro'), Offline QR Dock, vCard, & Share
+       Hub Logic: View Filter (Default 'pro'), vCard Generator, & Native Share
        ========================================================================= */
     const baseHubUrl = window.location.href.split('#')[0];
 
     const viewProfiles = {
       pro: {
         subtitle: "Chief BMET \u2022 Dialysis Clinic, Inc. (DCI)",
-        bio: "Chief Biomedical Equipment Technician overseeing clinical equipment maintenance, AAMI water purification systems, facility operations, and technical logistics across North Little Rock & McCrory, AR.",
-        defaultQR: "hub"
+        bio: "Chief Biomedical Equipment Technician overseeing hemodialysis machinery, AAMI reverse osmosis water purification loops, and clinical facility operations across Central AR."
       },
       "non-pro": {
         subtitle: "Maker \u2022 Skater \u2022 Gamer",
-        bio: "Spending my off-hours fabricating functional 3D-printed parts, carving local pump tracks, and gaming on Xbox, Switch, and PC.",
-        defaultQR: "venmo"
-      }
-    };
-
-    const qrModes = {
-      hub: {
-        url: baseHubUrl,
-        caption: "Scan to open Dan's Contact Hub"
-      },
-      linkedin: {
-        url: "https://www.linkedin.com/search/results/all/?keywords=Daniel%20Bartyzal",
-        caption: "LinkedIn \u2022 Daniel Bartyzal"
-      },
-      venmo: {
-        url: "https://venmo.com/u/Daniel-Bartyzal",
-        caption: "Venmo \u2022 @Daniel-Bartyzal"
-      },
-      cashapp: {
-        url: "https://cash.app/$DanB999",
-        caption: "Cash App \u2022 $DanB999"
+        bio: "Spending my off-hours fabricating functional 3D-printed parts, carving local pump tracks, and gaming on Xbox, Switch, and PC."
       }
     };
 
@@ -1076,25 +847,8 @@
         card.classList.toggle('is-hidden', !showCard);
       });
 
-      const qrBtn = document.querySelector(`.qr-tab[data-qr="${profile.defaultQR}"]`);
-      if (qrBtn) setQRMode(profile.defaultQR, qrBtn);
-
       const newHash = targetMode === 'pro' ? window.location.pathname : `#${targetMode}`;
       history.replaceState(null, '', newHash);
-    }
-
-    function updateQR(modeKey) {
-      const mode = qrModes[modeKey];
-      const qrBox = document.getElementById('qr-box');
-      const qrCap = document.getElementById('qr-caption');
-      qrBox.innerHTML = OfflineQR.toSVG(mode.url);
-      qrCap.textContent = mode.caption;
-    }
-
-    function setQRMode(modeKey, btnEl) {
-      document.querySelectorAll('.qr-tab').forEach(t => t.classList.remove('active'));
-      btnEl.classList.add('active');
-      updateQR(modeKey);
     }
 
     function showToast(message) {
@@ -1110,7 +864,7 @@
       });
     }
 
-    // 1-Tap Save Contact (.vcf) Generator — Tailored for DCI Business Trip
+    // 1-Tap Save Contact (.vcf) Generator — Strict DCI Business Profile
     function downloadVCard() {
       const vcardLines = [
         "BEGIN:VCARD",
@@ -1121,7 +875,6 @@
         "TITLE:Chief Biomedical Equipment Technician",
         "TEL;TYPE=CELL,VOICE:501-680-6730",
         "EMAIL;TYPE=WORK,INTERNET:daniel.bartyzal@dciinc.org",
-        "EMAIL;TYPE=HOME,INTERNET:bartyzal9@gmail.com",
         "ADR;TYPE=WORK:;;;North Little Rock;AR;;USA",
         `URL:${baseHubUrl}`,
         "NOTE:Chief BMET • Dialysis Clinic, Inc. (DCI) • Central AR",
