@@ -2,913 +2,667 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Dan Bartyzal | Chief BMET • DCI</title>
-
-  <!-- OpenGraph / Rich Link Preview Tags -->
-  <meta name="description" content="Dan Bartyzal — Chief BMET • Dialysis Clinic, Inc. (DCI). Direct contact, vCard, and professional channels." />
-  <meta property="og:title" content="Dan Bartyzal | Chief BMET • DCI" />
-  <meta property="og:description" content="Chief Biomedical Equipment Technician at Dialysis Clinic, Inc. (DCI) — Direct phone, work email, and contact card." />
-  <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#070b10" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dan Bartyzal • Chief BMET | DCI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-chassis: #070b10;
-      --bg-panel: #0d141d;
-      --bg-panel-hover: #131d2a;
-      --ro-cyan: #00d2ff;
-      --ro-cyan-light: #7ce8ff;
-      --ro-cyan-dim: rgba(0, 210, 255, 0.28);
-      --ro-cyan-glow: rgba(0, 210, 255, 0.1);
-      --permeate-teal: #00e5a3;
-      --steel-main: #e6eef8;
-      --steel-muted: #7f93ab;
-      --border-steel: rgba(148, 179, 214, 0.14);
-      --radius-tech: 8px;
-      --radius-sm: 5px;
-      --transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+      --bg-base: #0b0f14;
+      --bg-panel: #121821;
+      --bg-card: #17202c;
+      --bg-card-hover: #1d2836;
+      --border-subtle: #243040;
+      --border-active: #38bdf8;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      background-color: var(--bg-chassis);
-      /* CAD Blueprint Grid + Subtle Fluid Radial Glow */
+      background-color: var(--bg-base);
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(0, 210, 255, 0.12) 0%, transparent 55%),
-        linear-gradient(rgba(0, 210, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 210, 255, 0.03) 1px, transparent 1px);
+        radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.08) 0%, transparent 55%),
+        linear-gradient(rgba(36, 48, 64, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(36, 48, 64, 0.25) 1px, transparent 1px);
       background-size: 100% 100%, 24px 24px, 24px 24px;
-      color: var(--steel-main);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      line-height: 1.5;
       min-height: 100vh;
       display: flex;
       justify-content: center;
-      padding: 24px 16px 56px;
-      line-height: 1.5;
+      padding: 16px 14px 48px;
     }
 
-    .hub-container {
+    main {
       width: 100%;
-      max-width: 460px;
+      max-width: 480px;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
     }
 
-    /* Top HMI Telemetry Strip */
+    /* Top HMI Telemetry Bar */
     .telemetry-bar {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      background: rgba(13, 20, 29, 0.85);
-      border: 1px solid var(--border-steel);
-      border-left: 3px solid var(--permeate-teal);
-      border-radius: var(--radius-sm);
-      padding: 7px 12px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      color: var(--steel-muted);
-      letter-spacing: 0.05em;
+      align-items: center;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: var(--text-secondary);
     }
 
-    .telemetry-status {
+    .status-group {
       display: flex;
       align-items: center;
-      gap: 7px;
-      color: var(--permeate-teal);
+      gap: 8px;
+      color: var(--accent-emerald);
+      font-weight: 600;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-emerald);
+      box-shadow: 0 0 8px var(--accent-emerald);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .telemetry-readout {
+      color: var(--accent-cyan);
       font-weight: 500;
     }
 
-    .status-led {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--permeate-teal);
-      box-shadow: 0 0 8px var(--permeate-teal);
-      animation: pulseLed 2.4s infinite ease-in-out;
-    }
-
-    @keyframes pulseLed {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.35; }
-    }
-
-    /* Technical Header & Gauge Avatar */
-    .profile-header {
-      background: linear-gradient(180deg, rgba(13, 20, 29, 0.9) 0%, rgba(9, 14, 21, 0.95) 100%);
-      border: 1px solid var(--border-steel);
-      border-radius: var(--radius-tech);
-      padding: 22px 18px 18px;
-      text-align: center;
+    /* Header & Profile Card */
+    header {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 20px;
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 12px;
       position: relative;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      overflow: hidden;
     }
 
-    /* Machined Corner Accents */
-    .profile-header::before,
-    .profile-header::after {
-      content: "";
+    header::before {
+      content: '';
       position: absolute;
-      width: 10px;
-      height: 10px;
-      border-color: var(--ro-cyan);
-      border-style: solid;
-      pointer-events: none;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-emerald));
     }
 
-    .profile-header::before {
-      top: -1px;
-      left: -1px;
-      border-width: 2px 0 0 2px;
-      border-top-left-radius: var(--radius-tech);
+    .profile-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
 
-    .profile-header::after {
-      top: -1px;
-      right: -1px;
-      border-width: 2px 2px 0 0;
-      border-top-right-radius: var(--radius-tech);
-    }
-
-    .avatar-frame {
-      width: 92px;
-      height: 92px;
-      border-radius: 50%;
-      padding: 3px;
-      background: conic-gradient(from 180deg, var(--ro-cyan), #1a3047, var(--permeate-teal), var(--ro-cyan));
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7), 0 0 18px var(--ro-cyan-glow);
-      position: relative;
-    }
-
-    .avatar-inner {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: var(--bg-chassis);
-      border: 2px dashed rgba(0, 210, 255, 0.3);
+    .avatar-badge {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #1e293b, #0f172a);
+      border: 1px solid var(--accent-cyan);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.85rem;
+      flex-shrink: 0;
+      box-shadow: inset 0 0 12px rgba(56, 189, 248, 0.15);
+    }
+
+    .avatar-badge span {
+      font-family: var(--font-mono);
       font-weight: 700;
-      color: var(--ro-cyan-light);
-      letter-spacing: 0.04em;
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      line-height: 1;
     }
 
-    .avatar-inner small {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.55rem;
-      color: var(--steel-muted);
-      letter-spacing: 0.14em;
-      margin-top: -4px;
+    .avatar-badge small {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: var(--accent-cyan);
+      letter-spacing: 0.08em;
+      margin-top: 3px;
     }
 
-    .avatar-inner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .profile-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.95rem;
+    .identity h1 {
+      font-size: 1.35rem;
       font-weight: 700;
-      letter-spacing: 0.01em;
-      color: var(--steel-main);
-      line-height: 1.15;
+      letter-spacing: -0.01em;
     }
 
-    .profile-subtitle {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--ro-cyan);
+    .identity .role-line {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--accent-cyan);
+      margin-top: 2px;
+    }
+
+    .mission-callout {
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 3px solid var(--accent-emerald);
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.84rem;
+      color: var(--text-primary);
       font-weight: 500;
-      background: rgba(0, 210, 255, 0.08);
-      border: 1px solid rgba(0, 210, 255, 0.22);
-      padding: 4px 10px;
-      border-radius: 4px;
     }
 
-    .profile-bio {
+    .bio-text {
       font-size: 0.86rem;
-      color: var(--steel-muted);
-      font-weight: 400;
-      max-width: 390px;
+      color: var(--text-secondary);
       line-height: 1.55;
     }
 
-    /* Quick Action Bar: Save vCard & Native Share */
-    .quick-actions {
-      display: grid;
-      grid-template-columns: 1.35fr 1fr;
-      gap: 10px;
-      width: 100%;
-      margin-top: 6px;
-    }
-
-    .action-btn {
+    .duty-tags {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 11px 14px;
-      border-radius: var(--radius-sm);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      cursor: pointer;
-      transition: var(--transition);
-      text-decoration: none;
-    }
-
-    .action-btn svg {
-      width: 16px;
-      height: 16px;
-      flex-shrink: 0;
-    }
-
-    .action-btn-primary {
-      background: linear-gradient(135deg, rgba(0, 210, 255, 0.22), rgba(0, 210, 255, 0.07));
-      border: 1px solid var(--ro-cyan);
-      color: var(--ro-cyan-light);
-      box-shadow: 0 4px 16px rgba(0, 210, 255, 0.15);
-    }
-
-    .action-btn-primary:hover {
-      background: linear-gradient(135deg, rgba(0, 210, 255, 0.32), rgba(0, 210, 255, 0.14));
-      transform: translateY(-1px);
-    }
-
-    .action-btn-secondary {
-      background: var(--bg-chassis);
-      border: 1px solid var(--border-steel);
-      color: var(--steel-main);
-    }
-
-    .action-btn-secondary:hover {
-      background: var(--bg-panel-hover);
-      border-color: var(--ro-cyan-dim);
-      color: var(--ro-cyan-light);
-      transform: translateY(-1px);
-    }
-
-    /* HMI Selector Switch (2 Tabs: DCI Professional vs Non-Professional) */
-    .view-filter-wrap {
-      background: #05080c;
-      border: 1px solid var(--border-steel);
-      border-radius: var(--radius-tech);
-      padding: 5px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      flex-wrap: wrap;
       gap: 6px;
-      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.7);
+      margin-top: 2px;
+    }
+
+    .duty-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      padding: 4px 8px;
+      border-radius: 5px;
+    }
+
+    /* Filter Navigation */
+    nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      background: var(--bg-panel);
+      padding: 5px;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
     }
 
     .filter-btn {
       background: transparent;
-      border: 1px solid transparent;
-      color: var(--steel-muted);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.74rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 10px 8px;
-      border-radius: var(--radius-sm);
+      border: none;
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 8px 4px;
+      border-radius: 7px;
       cursor: pointer;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      white-space: nowrap;
-    }
-
-    .filter-btn:hover {
-      color: var(--steel-main);
+      transition: all 0.15s ease;
     }
 
     .filter-btn.active {
-      background: linear-gradient(180deg, rgba(0, 210, 255, 0.18), rgba(0, 210, 255, 0.06));
-      color: var(--ro-cyan-light);
-      border-color: var(--ro-cyan);
-      box-shadow: 0 2px 12px rgba(0, 210, 255, 0.15);
+      background: var(--bg-card);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(56, 189, 248, 0.35);
     }
 
-    .filter-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--steel-muted);
-       opacity: 0.4;
-      transition: var(--transition);
-    }
-
-    .filter-btn.active .filter-dot {
-      background: var(--ro-cyan);
-      box-shadow: 0 0 8px var(--ro-cyan);
-      opacity: 1;
-    }
-
-    .is-hidden {
-      display: none !important;
-    }
-
-    /* Schematic Section Labels */
-    .section-label {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.68rem;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--ro-cyan);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 11px;
-      font-weight: 600;
-    }
-
-    .section-label::before {
-      content: "//";
-      color: var(--permeate-teal);
-    }
-
-    .section-label::after {
-      content: "";
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, var(--ro-cyan-dim), transparent);
-    }
-
-    /* Direct Payment Icon Row */
-    .payment-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-
-    .pay-pill {
+    /* Sections */
+    section {
       background: var(--bg-panel);
-      border: 1px solid var(--border-steel);
-      border-top: 2px solid var(--ro-cyan-dim);
-      border-radius: var(--radius-tech);
-      padding: 12px 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      text-decoration: none;
-      color: var(--steel-main);
-      transition: var(--transition);
-      cursor: pointer;
-    }
-
-    .pay-pill:hover {
-      background: var(--bg-panel-hover);
-      border-color: var(--ro-cyan);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .pay-pill svg {
-      width: 20px;
-      height: 20px;
-      color: var(--ro-cyan);
-    }
-
-    .pay-title {
-      font-size: 0.78rem;
-      font-weight: 600;
-    }
-
-    .pay-handle {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.65rem;
-      color: var(--steel-muted);
-    }
-
-    /* Machined Link Cards */
-    .links-group {
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 14px;
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
 
-    .link-card {
-      background: var(--bg-panel);
-      border: 1px solid var(--border-steel);
-      border-left: 3px solid var(--ro-cyan-dim);
-      border-radius: var(--radius-tech);
-      padding: 13px 15px;
+    section.hidden {
+      display: none;
+    }
+
+    .section-header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      text-decoration: none;
-      color: var(--steel-main);
-      transition: var(--transition);
-      cursor: pointer;
-      width: 100%;
-      text-align: left;
-      font-family: inherit;
-      gap: 10px;
-    }
-
-    .link-card:hover {
-      background: var(--bg-panel-hover);
-      border-color: var(--ro-cyan-dim);
-      border-left-color: var(--ro-cyan);
-      transform: translateY(-1px);
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.55);
-    }
-
-    .link-left {
-      display: flex;
       align-items: center;
-      gap: 13px;
-      min-width: 0;
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      padding-bottom: 4px;
+      border-bottom: 1px solid rgba(36, 48, 64, 0.7);
     }
 
-    .icon-frame {
-      width: 40px;
-      height: 40px;
-      border-radius: var(--radius-sm);
-      background: rgba(0, 210, 255, 0.06);
-      border: 1px solid var(--ro-cyan-dim);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      color: var(--ro-cyan);
-      transition: var(--transition);
-    }
-
-    .link-card:hover .icon-frame {
-      background: rgba(0, 210, 255, 0.14);
-      border-color: var(--ro-cyan);
-      color: var(--ro-cyan-light);
-    }
-
-    .icon-frame svg {
-      width: 19px;
-      height: 19px;
-    }
-
-    .link-meta {
+    /* Link & Action Cards */
+    .card-list {
       display: flex;
       flex-direction: column;
-      min-width: 0;
+      gap: 8px;
     }
 
-    .link-name {
+    .item-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 9px;
+      padding: 11px 12px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .item-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--border-active);
+    }
+
+    .item-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .item-label {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .item-value {
       font-size: 0.9rem;
       font-weight: 600;
-      color: var(--steel-main);
+      color: var(--text-primary);
     }
 
-    .link-handle {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.73rem;
-      color: var(--steel-muted);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .link-actions-wrap {
+    .action-group {
       display: flex;
-      align-items: center;
       gap: 6px;
-      flex-shrink: 0;
+      align-items: center;
     }
 
-    .link-action {
+    .pill-btn {
+      font-family: var(--font-mono);
       font-size: 0.7rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 500;
-      color: var(--ro-cyan-light);
+      font-weight: 600;
       padding: 5px 9px;
-      border-radius: 4px;
-      border: 1px solid rgba(0, 210, 255, 0.28);
-      background: rgba(0, 210, 255, 0.07);
-      flex-shrink: 0;
+      border-radius: 5px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(56, 189, 248, 0.3);
       text-decoration: none;
       cursor: pointer;
-      transition: var(--transition);
     }
 
-    .link-action:hover {
-      background: rgba(0, 210, 255, 0.22);
-      border-color: var(--ro-cyan);
-      color: #ffffff;
+    .pill-btn:hover {
+      background: rgba(56, 189, 248, 0.22);
     }
 
-    /* Toast Notification */
-    .toast {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: #0d1622;
-      color: var(--ro-cyan-light);
-      border: 1px solid var(--ro-cyan);
-      padding: 10px 18px;
-      border-radius: var(--radius-sm);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.76rem;
-      font-weight: 500;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.25s ease;
-      z-index: 100;
-      white-space: nowrap;
+    /* Clinic & RO Comparison Grid */
+    .clinic-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
 
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
+    .clinic-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 9px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .clinic-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .clinic-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: var(--text-primary);
+    }
+
+    .clinic-badge {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(16, 185, 129, 0.14);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .clinic-badge.assist {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--accent-amber);
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .ro-spec {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--accent-cyan);
+    }
+
+    .clinic-desc {
+      font-size: 0.81rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
+    /* Direct Transfer Grid */
+    .transfer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .transfer-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 9px;
+      padding: 11px 12px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      transition: border-color 0.15s ease;
+    }
+
+    .transfer-card:hover {
+      border-color: var(--border-active);
+    }
+
+    .transfer-card span:first-child {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--text-muted);
+    }
+
+    .transfer-card span:last-child {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-primary);
     }
 
     footer {
       text-align: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.66rem;
-      color: rgba(127, 147, 171, 0.55);
-      letter-spacing: 0.1em;
-      margin-top: 10px;
-      padding-top: 12px;
-      border-top: 1px dashed rgba(148, 179, 214, 0.12);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-top: 4px;
+    }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--accent-emerald);
+      color: #052e16;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
   </style>
 </head>
 <body>
-
-  <main class="hub-container">
-    <!-- Top Water Treatment / Biomedical Telemetry Bar -->
+  <main>
+    <!-- Top Telemetry Banner -->
     <div class="telemetry-bar" aria-hidden="true">
-      <div class="telemetry-status">
-        <span class="status-led"></span>
+      <div class="status-group">
+        <span class="pulse-dot"></span>
         <span>SYS.RO-LOOP // ONLINE</span>
       </div>
-      <span>0.08 &mu;S/cm &bull; AAMI STD</span>
+      <span class="telemetry-readout">1.4 μS/cm • NON-PATIENT LABS</span>
     </div>
 
-    <!-- Header / Bio -->
-    <header class="profile-header">
-      <div class="avatar-frame">
-        <!-- Optional: Replace the contents of avatar-inner with <img src="profile.jpg" alt="Dan Bartyzal"> -->
-        <div class="avatar-inner">
+    <!-- Header & Core Mission -->
+    <header>
+      <div class="profile-top">
+        <div class="avatar-badge">
           <span>DB</span>
           <small>BMET</small>
         </div>
+        <div class="identity">
+          <h1>Dan Bartyzal</h1>
+          <div class="role-line">Chief BMET • Dialysis Clinic, Inc. (DCI)</div>
+        </div>
       </div>
-      <h1 class="profile-name">Dan Bartyzal</h1>
-      <p id="profile-subtitle" class="profile-subtitle">Chief BMET &bull; Dialysis Clinic, Inc. (DCI)</p>
-      <p id="profile-bio" class="profile-bio">
-        Chief Biomedical Equipment Technician overseeing hemodialysis machinery, AAMI reverse osmosis water purification loops, and clinical facility operations across Central AR.
+
+      <div class="mission-callout">
+        Patient safety and care come first—supported by keeping clinical equipment, water systems, and facilities dependable for our clinic staff every day.
+      </div>
+
+      <p class="bio-text">
+        Chief Biomedical Equipment Technician and facility manager for DCI's <strong>North Little Rock</strong> and <strong>McCrory</strong> clinics (with technical assist coverage in Little Rock). Responsibilities span B. Braun Dialog+ hemodialysis machine maintenance, water room pretreatment and RO distribution loops, monthly non-patient lab sampling (cultures &amp; endotoxins), Workday inventory and supply chain logistics, and building operations.
       </p>
 
-      <!-- 1-Tap Save Contact (.vcf) & Native Share -->
-      <div class="quick-actions">
-        <button class="action-btn action-btn-primary" onclick="downloadVCard()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
-          <span>Save Contact (.vcf)</span>
-        </button>
-        <button class="action-btn action-btn-secondary" onclick="shareHub()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-          <span>Share Hub</span>
-        </button>
+      <div class="duty-tags">
+        <span class="duty-tag">B. Braun Dialog+</span>
+        <span class="duty-tag">Monthly Non-Patient Labs</span>
+        <span class="duty-tag">RO &amp; Pretreatment</span>
+        <span class="duty-tag">Facility &amp; Logistics</span>
       </div>
     </header>
 
-    <!-- 2-Tab View Filter: DCI / Professional (Default) & Non-Professional -->
-    <nav class="view-filter-wrap" aria-label="Profile View Filter">
-      <button class="filter-btn active" data-filter="pro" onclick="setViewFilter('pro')">
-        <span class="filter-dot"></span>DCI / Professional
-      </button>
-      <button class="filter-btn" data-filter="non-pro" onclick="setViewFilter('non-pro')">
-        <span class="filter-dot"></span>Non-Professional
-      </button>
+    <!-- View Filter Navigation -->
+    <nav aria-label="Profile View Filter">
+      <button class="filter-btn active" data-filter="all">ALL SYSTEMS</button>
+      <button class="filter-btn" data-filter="dci">DCI / WORK</button>
+      <button class="filter-btn" data-filter="personal">PERSONAL</button>
     </nav>
 
-    <!-- DCI & Professional Contact Section (Default Active View) -->
-    <section class="hub-section" data-section-cat="pro">
-      <div class="section-label">DCI Direct Channels</div>
-      <div class="links-group">
-        <!-- Mobile / Cell Call & Copy -->
-        <div class="link-card" data-cat="pro" onclick="window.location.href='tel:5016806730'">
-          <div class="link-left">
-            <div class="icon-frame">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
-            <div class="link-meta">
-              <span class="link-name">Mobile / Cell</span>
-              <span class="link-handle">501-680-6730</span>
-            </div>
+    <!-- DCI Direct Channels -->
+    <section data-category="dci">
+      <div class="section-header">
+        <span>DCI Direct Channels</span>
+        <span>PRIORITY</span>
+      </div>
+      <div class="card-list">
+        <div class="item-card">
+          <div class="item-info">
+            <span class="item-label">Mobile / Cell</span>
+            <span class="item-value">501-680-6730</span>
           </div>
-          <div class="link-actions-wrap" onclick="event.stopPropagation()">
-            <a class="link-action" href="tel:5016806730">CALL</a>
-            <a class="link-action" href="sms:5016806730">TEXT</a>
-            <button class="link-action" type="button" onclick="copyText('501-680-6730', 'Cell number copied')">COPY</button>
+          <div class="action-group">
+            <a class="pill-btn" href="tel:+15016806730">CALL</a>
+            <a class="pill-btn" href="sms:+15016806730">TEXT</a>
+            <button class="pill-btn" onclick="copyText('501-680-6730')">COPY</button>
           </div>
         </div>
 
-        <!-- DCI Work Email -->
-        <div class="link-card" data-cat="pro" onclick="window.location.href='mailto:daniel.bartyzal@dciinc.org'">
-          <div class="link-left">
-            <div class="icon-frame">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            </div>
-            <div class="link-meta">
-              <span class="link-name">DCI Work Email</span>
-              <span class="link-handle">daniel.bartyzal@dciinc.org</span>
-            </div>
+        <div class="item-card">
+          <div class="item-info">
+            <span class="item-label">DCI Work Email</span>
+            <span class="item-value">daniel.bartyzal@dciinc.org</span>
           </div>
-          <div class="link-actions-wrap" onclick="event.stopPropagation()">
-            <a class="link-action" href="mailto:daniel.bartyzal@dciinc.org">EMAIL</a>
-            <button class="link-action" type="button" onclick="copyText('daniel.bartyzal@dciinc.org', 'DCI email copied')">COPY</button>
+          <div class="action-group">
+            <a class="pill-btn" href="mailto:daniel.bartyzal@dciinc.org">EMAIL</a>
+            <button class="pill-btn" onclick="copyText('daniel.bartyzal@dciinc.org')">COPY</button>
           </div>
         </div>
 
-        <!-- LinkedIn (Pro) -->
-        <a class="link-card" data-cat="pro" href="https://www.linkedin.com/search/results/all/?keywords=Daniel%20Bartyzal" target="_blank" rel="noopener">
-          <div class="link-left">
-            <div class="icon-frame">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            </div>
-            <div class="link-meta">
-              <span class="link-name">LinkedIn</span>
-              <span class="link-handle">Daniel Bartyzal &bull; Chief BMET</span>
-            </div>
+        <a class="item-card" href="https://www.linkedin.com/search/results/all/?keywords=Daniel%20Bartyzal" rel="noopener" target="_blank">
+          <div class="item-info">
+            <span class="item-label">LinkedIn</span>
+            <span class="item-value">Daniel Bartyzal • Chief BMET</span>
           </div>
-          <span class="link-action">OPEN</span>
+          <span class="pill-btn">OPEN</span>
         </a>
       </div>
     </section>
 
-    <!-- Non-Professional: Direct Payment Row -->
-    <section class="hub-section is-hidden" data-section-cat="non-pro">
-      <div class="section-label">Direct Transfer</div>
-      <div class="payment-row">
-        <a class="pay-pill" href="https://venmo.com/u/Daniel-Bartyzal" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18.5 4c.7 1.2 1 2.5 1 4.2 0 5.2-4.4 11.8-8 15.8H6.2L3.5 4.5l4.6-.5 1.7 13.5c1.6-2.6 3.6-6.7 3.6-9.5 0-1.5-.3-2.6-.8-3.5L18.5 4z"/></svg>
-          <span class="pay-title">Venmo</span>
-          <span class="pay-handle">@Daniel-Bartyzal</span>
-        </a>
+    <!-- Clinic & RO Architecture Comparison -->
+    <section data-category="dci">
+      <div class="section-header">
+        <span>Clinic &amp; RO Water Architecture</span>
+        <span>2 PRIMARY • 1 ASSIST</span>
+      </div>
+      <div class="clinic-grid">
+        <div class="clinic-card">
+          <div class="clinic-top">
+            <span class="clinic-name">North Little Rock Clinic</span>
+            <span class="clinic-badge">PRIMARY CLINIC</span>
+          </div>
+          <div class="ro-spec">RO System: Mar Cor CWP (Central Water Purification)</div>
+          <p class="clinic-desc">
+            High-capacity central water purification architecture supporting multi-station treatment floors, automated heat disinfection cycles, and monthly non-patient culture and endotoxin verification.
+          </p>
+        </div>
 
-        <a class="pay-pill" href="https://cash.app/$DanB999" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          <span class="pay-title">Cash App</span>
-          <span class="pay-handle">$DanB999</span>
-        </a>
+        <div class="clinic-card">
+          <div class="clinic-top">
+            <span class="clinic-name">McCrory Clinic</span>
+            <span class="clinic-badge">PRIMARY CLINIC</span>
+          </div>
+          <div class="ro-spec">RO System: Mar Cor 4400 (Millenium HX)</div>
+          <p class="clinic-desc">
+            Dedicated regional dialysis water plant driven by the Mar Cor 4400 / Millenium HX reverse osmosis unit, paired with full pretreatment filtration, loop monitoring, and monthly non-patient lab testing.
+          </p>
+        </div>
 
-        <button class="pay-pill" onclick="copyText('bartyzal9@gmail.com', 'PayPal email copied')">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 21L10 4h7c3 0 5 2 4.5 5-.5 3.5-3 5-6.5 5h-3l-1.5 7H7z"/></svg>
-          <span class="pay-title">PayPal</span>
-          <span class="pay-handle">Copy Email</span>
-        </button>
+        <div class="clinic-card">
+          <div class="clinic-top">
+            <span class="clinic-name">Little Rock Clinic</span>
+            <span class="clinic-badge assist">ASSIST COVERAGE</span>
+          </div>
+          <div class="ro-spec">Scope: Regional BMET &amp; Facility Support</div>
+          <p class="clinic-desc">
+            Cross-clinic technical assistance, preventative maintenance backup, and operational support for clinical staff and biomedical infrastructure.
+          </p>
+        </div>
       </div>
     </section>
 
-    <!-- Non-Professional: Personal & Social Channels -->
-    <section class="hub-section is-hidden" data-section-cat="non-pro">
-      <div class="section-label">Personal &amp; Social</div>
-      <div class="links-group">
-        <!-- Personal Email -->
-        <button class="link-card" data-cat="non-pro" onclick="copyText('bartyzal9@gmail.com', 'Personal email copied')">
-          <div class="link-left">
-            <div class="icon-frame">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            </div>
-            <div class="link-meta">
-              <span class="link-name">Personal Email</span>
-              <span class="link-handle">bartyzal9@gmail.com</span>
-            </div>
-          </div>
-          <span class="link-action">COPY</span>
-        </button>
-
-        <!-- Instagram -->
-        <a class="link-card" data-cat="non-pro" href="https://www.instagram.com/barteezyy/" target="_blank" rel="noopener">
-          <div class="link-left">
-            <div class="icon-frame">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-            </div>
-            <div class="link-meta">
-              <span class="link-name">Instagram</span>
-              <span class="link-handle">@barteezyy</span>
-            </div>
-          </div>
-          <span class="link-action">OPEN</span>
+    <!-- Direct Transfer -->
+    <section data-category="personal">
+      <div class="section-header">
+        <span>Direct Transfer</span>
+        <span>PEER-TO-PEER</span>
+      </div>
+      <div class="transfer-grid">
+        <a class="transfer-card" href="https://venmo.com/u/Daniel-Bartyzal" rel="noopener" target="_blank">
+          <span>Venmo</span>
+          <span>@Daniel-Bartyzal</span>
         </a>
-
-        <!-- Discord -->
-        <button class="link-card" data-cat="non-pro" onclick="copyText('barteezyy', 'Discord username copied')">
-          <div class="link-left">
-            <div class="icon-frame">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 12h.01M15 12h.01M7.5 4.5c3-.8 6-.8 9 0l1.5 3c2 1.5 3 4.5 2.5 8.5-2 1.8-4.2 2.5-6 2.5l-1-2h-3l-1 2c-1.8 0-4-.7-6-2.5-.5-4 .5-7 2.5-8.5l1.5-3z"/></svg>
-            </div>
-            <div class="link-meta">
-              <span class="link-name">Discord</span>
-              <span class="link-handle">@barteezyy</span>
-            </div>
-          </div>
-          <span class="link-action">COPY</span>
-        </button>
-
-        <!-- Spotify -->
-        <a class="link-card" data-cat="non-pro" href="https://open.spotify.com/user/bartyzal9" target="_blank" rel="noopener">
-          <div class="link-left">
-            <div class="icon-frame">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M8 14.5c2.5-1 5.5-1 8 0M7 11.5c3.2-1.2 6.8-1.2 10 0M6.5 8.5c3.8-1.5 7.2-1.5 11 0"/></svg>
-            </div>
-            <div class="link-meta">
-              <span class="link-name">Spotify</span>
-              <span class="link-handle">bartyzal9</span>
-            </div>
-          </div>
-          <span class="link-action">OPEN</span>
+        <a class="transfer-card" href="https://cash.app/$DanB999" rel="noopener" target="_blank">
+          <span>Cash App</span>
+          <span>$DanB999</span>
         </a>
       </div>
     </section>
 
-    <!-- Non-Professional: Gaming Roster -->
-    <section class="hub-section is-hidden" data-section-cat="non-pro">
-      <div class="section-label">Gaming Networks</div>
-      <div class="links-group">
-        <button class="link-card" data-cat="non-pro" onclick="copyText('IntenseApathy9', 'Xbox Gamertag copied')">
-          <div class="link-left">
-            <div class="icon-frame">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M6.5 6.5c3.5 2.5 7.5 2.5 11 0M7 17.5c2.5-4.5 7.5-4.5 10 0"/></svg>
-            </div>
-            <div class="link-meta">
-              <span class="link-name">Xbox Live</span>
-              <span class="link-handle">IntenseApathy9</span>
-            </div>
+    <!-- Personal & Social -->
+    <section data-category="personal">
+      <div class="section-header">
+        <span>Personal &amp; Social</span>
+        <span>OFF-DUTY</span>
+      </div>
+      <div class="card-list">
+        <a class="item-card" href="https://www.instagram.com/barteezyy/" rel="noopener" target="_blank">
+          <div class="item-info">
+            <span class="item-label">Instagram</span>
+            <span class="item-value">@barteezyy</span>
           </div>
-          <span class="link-action">COPY</span>
-        </button>
+          <span class="pill-btn">OPEN</span>
+        </a>
 
-        <button class="link-card" data-cat="non-pro" onclick="copyText('kryptonianutopian', 'Epic Games handle copied')">
-          <div class="link-left">
-            <div class="icon-frame">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            </div>
-            <div class="link-meta">
-              <span class="link-name">Epic Games / Fortnite</span>
-              <span class="link-handle">@kryptonianutopian</span>
-            </div>
+        <a class="item-card" href="https://open.spotify.com/user/bartyzal9" rel="noopener" target="_blank">
+          <div class="item-info">
+            <span class="item-label">Spotify</span>
+            <span class="item-value">bartyzal9</span>
           </div>
-          <span class="link-action">COPY</span>
-        </button>
-
-        <button class="link-card" data-cat="non-pro" onclick="copyText('SW-1315-0104-9923', 'Nintendo Friend Code copied')">
-          <div class="link-left">
-            <div class="icon-frame">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="8" height="16" rx="4"/><rect x="13" y="4" width="8" height="16" rx="4"/><circle cx="7" cy="9" r="1.2" fill="currentColor"/><circle cx="17" cy="14" r="1.2" fill="currentColor"/></svg>
-            </div>
-            <div class="link-meta">
-              <span class="link-name">Nintendo Switch</span>
-              <span class="link-handle">SW-1315-0104-9923</span>
-            </div>
-          </div>
-          <span class="link-action">COPY</span>
-        </button>
+          <span class="pill-btn">OPEN</span>
+        </a>
       </div>
     </section>
 
     <footer>
-      BIOMEDICAL &amp; WATER PURIFICATION HMI &bull; DAN BARTYZAL
+      BIOMEDICAL &amp; WATER PURIFICATION HMI • DAN BARTYZAL
     </footer>
   </main>
 
-  <div id="toast" class="toast">Copied to clipboard</div>
+  <div id="toast">Copied to clipboard</div>
 
   <script>
-    /* =========================================================================
-       Hub Logic: View Filter (Default 'pro'), vCard Generator, & Native Share
-       ========================================================================= */
-    const baseHubUrl = window.location.href.split('#')[0];
+    // Filter button logic
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const sections = document.querySelectorAll('section[data-category]');
 
-    const viewProfiles = {
-      pro: {
-        subtitle: "Chief BMET \u2022 Dialysis Clinic, Inc. (DCI)",
-        bio: "Chief Biomedical Equipment Technician overseeing hemodialysis machinery, AAMI reverse osmosis water purification loops, and clinical facility operations across Central AR."
-      },
-      "non-pro": {
-        subtitle: "Maker \u2022 Skater \u2022 Gamer",
-        bio: "Spending my off-hours fabricating functional 3D-printed parts, carving local pump tracks, and gaming on Xbox, Switch, and PC."
-      }
-    };
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const target = btn.getAttribute('data-filter');
 
-    function setViewFilter(mode) {
-      const targetMode = viewProfiles[mode] ? mode : 'pro';
-      const profile = viewProfiles[targetMode];
-
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.filter === targetMode);
+        sections.forEach(sec => {
+          if (target === 'all' || sec.getAttribute('data-category') === target) {
+            sec.classList.remove('hidden');
+          } else {
+            sec.classList.add('hidden');
+          }
+        });
       });
+    });
 
-      document.getElementById('profile-subtitle').textContent = profile.subtitle;
-      document.getElementById('profile-bio').textContent = profile.bio;
-
-      document.querySelectorAll('.hub-section').forEach(sec => {
-        const allowed = sec.dataset.sectionCat.split(' ');
-        const showSec = allowed.includes(targetMode);
-        sec.classList.toggle('is-hidden', !showSec);
-      });
-
-      document.querySelectorAll('.link-card[data-cat]').forEach(card => {
-        const allowed = card.dataset.cat.split(' ');
-        const showCard = allowed.includes(targetMode);
-        card.classList.toggle('is-hidden', !showCard);
-      });
-
-      const newHash = targetMode === 'pro' ? window.location.pathname : `#${targetMode}`;
-      history.replaceState(null, '', newHash);
-    }
-
-    function showToast(message) {
-      const toast = document.getElementById('toast');
-      toast.textContent = message;
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2200);
-    }
-
-    function copyText(text, message) {
+    // Clipboard copy helper
+    function copyText(text) {
       navigator.clipboard.writeText(text).then(() => {
-        showToast(message);
+        const toast = document.getElementById('toast');
+        toast.textContent = `Copied: ${text}`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2000);
       });
     }
-
-    // 1-Tap Save Contact (.vcf) Generator — Strict DCI Business Profile
-    function downloadVCard() {
-      const vcardLines = [
-        "BEGIN:VCARD",
-        "VERSION:3.0",
-        "N:Bartyzal;Dan;;;",
-        "FN:Dan Bartyzal",
-        "ORG:Dialysis Clinic, Inc. (DCI)",
-        "TITLE:Chief Biomedical Equipment Technician",
-        "TEL;TYPE=CELL,VOICE:501-680-6730",
-        "EMAIL;TYPE=WORK,INTERNET:daniel.bartyzal@dciinc.org",
-        "ADR;TYPE=WORK:;;;North Little Rock;AR;;USA",
-        `URL:${baseHubUrl}`,
-        "NOTE:Chief BMET • Dialysis Clinic, Inc. (DCI) • Central AR",
-        "END:VCARD"
-      ];
-      const blob = new Blob([vcardLines.join("\r\n")], { type: "text/vcard;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "Dan_Bartyzal_DCI.vcf";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-      showToast("DCI Contact card (.vcf) downloaded");
-    }
-
-    // Native Share Sheet / Fallback Copy
-    function shareHub() {
-      const shareData = {
-        title: "Dan Bartyzal | Chief BMET • DCI",
-        text: "Dan Bartyzal — Chief BMET, Dialysis Clinic, Inc. (DCI) | 501-680-6730 | daniel.bartyzal@dciinc.org",
-        url: baseHubUrl
-      };
-      if (navigator.share) {
-        navigator.share(shareData).catch(() => {});
-      } else {
-        copyText(baseHubUrl, "Hub link copied to clipboard");
-      }
-    }
-
-    // Initialize Hub on Load (Defaults to 'pro' unless #non-pro is specified)
-    const initialHash = window.location.hash.replace('#', '').toLowerCase();
-    setViewFilter(viewProfiles[initialHash] ? initialHash : 'pro');
   </script>
 </body>
 </html>
