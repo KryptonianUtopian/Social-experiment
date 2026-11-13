@@ -126,6 +126,7 @@
       gap: 14px;
     }
 
+    /* Hidden Trigger Button (Disguised as BMET Badge) */
     .avatar-badge {
       width: 56px;
       height: 56px;
@@ -138,6 +139,19 @@
       justify-content: center;
       flex-shrink: 0;
       box-shadow: inset 0 0 12px rgba(56, 189, 248, 0.15);
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: transform 0.12s ease, border-color 0.2s ease;
+    }
+
+    .avatar-badge:active {
+      transform: scale(0.95);
+    }
+
+    .avatar-badge.unlocked {
+      border-color: var(--accent-emerald);
+      box-shadow: inset 0 0 14px rgba(16, 185, 129, 0.25);
     }
 
     .avatar-badge span {
@@ -202,36 +216,6 @@
       border-radius: 5px;
     }
 
-    /* Filter Navigation */
-    nav {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      background: var(--bg-panel);
-      padding: 5px;
-      border-radius: 10px;
-      border: 1px solid var(--border-subtle);
-    }
-
-    .filter-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-secondary);
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 8px 4px;
-      border-radius: 7px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .filter-btn.active {
-      background: var(--bg-card);
-      color: var(--accent-cyan);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-    }
-
     /* Sections */
     section {
       background: var(--bg-panel);
@@ -241,10 +225,6 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-    }
-
-    section.hidden {
-      display: none;
     }
 
     .section-header {
@@ -327,7 +307,7 @@
       background: rgba(56, 189, 248, 0.22);
     }
 
-    /* Clinic & RO Comparison Grid */
+    /* Interactive Clinic & RO Comparison Cards */
     .clinic-grid {
       display: flex;
       flex-direction: column;
@@ -342,12 +322,25 @@
       display: flex;
       flex-direction: column;
       gap: 6px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .clinic-card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(56, 189, 248, 0.5);
+    }
+
+    .clinic-card.expanded {
+      border-color: var(--accent-cyan);
     }
 
     .clinic-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 8px;
     }
 
     .clinic-name {
@@ -356,9 +349,15 @@
       color: var(--text-primary);
     }
 
+    .clinic-meta-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     .clinic-badge {
       font-family: var(--font-mono);
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       padding: 2px 7px;
       border-radius: 4px;
       background: rgba(16, 185, 129, 0.14);
@@ -372,16 +371,103 @@
       border-color: rgba(245, 158, 11, 0.3);
     }
 
+    .expand-caret {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      transition: transform 0.2s ease;
+    }
+
+    .clinic-card.expanded .expand-caret {
+      transform: rotate(180deg);
+    }
+
     .ro-spec {
       font-family: var(--font-mono);
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       color: var(--accent-cyan);
+      line-height: 1.4;
     }
 
     .clinic-desc {
       font-size: 0.81rem;
       color: var(--text-secondary);
       line-height: 1.45;
+    }
+
+    /* Technician Operational Notes Drawer inside Clinic Card */
+    .tech-notes {
+      display: none;
+      margin-top: 6px;
+      padding: 10px 11px;
+      background: #0e141d;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 7px;
+      font-size: 0.79rem;
+      color: var(--text-secondary);
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .clinic-card.expanded .tech-notes {
+      display: flex;
+    }
+
+    .tech-notes-title {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .tech-notes ul {
+      padding-left: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .tech-notes li strong {
+      color: var(--text-primary);
+    }
+
+    /* Hidden Secondary Personal/Off-Duty Area */
+    #secondary-vault {
+      display: none;
+      flex-direction: column;
+      gap: 16px;
+      border-top: 1px dashed var(--border-subtle);
+      padding-top: 16px;
+      margin-top: 4px;
+    }
+
+    #secondary-vault.visible {
+      display: flex;
+    }
+
+    .vault-banner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent-amber);
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+      padding: 6px 10px;
+      border-radius: 7px;
+    }
+
+    .vault-close {
+      background: transparent;
+      border: none;
+      color: var(--accent-amber);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
     }
 
     /* Direct Transfer Grid */
@@ -427,6 +513,7 @@
       color: var(--text-muted);
       letter-spacing: 0.05em;
       margin-top: 4px;
+      user-select: none;
     }
 
     /* Toast Notification */
@@ -468,10 +555,11 @@
     <!-- Header & Core Mission -->
     <header>
       <div class="profile-top">
-        <div class="avatar-badge">
+        <!-- Hidden Access Button: Tap DB/BMET badge to toggle Off-Duty & Transfers -->
+        <button type="button" class="avatar-badge" id="secret-toggle" aria-label="Toggle secondary personal channels">
           <span>DB</span>
           <small>BMET</small>
-        </div>
+        </button>
         <div class="identity">
           <h1>Dan Bartyzal</h1>
           <div class="role-line">Chief BMET • Dialysis Clinic, Inc. (DCI)</div>
@@ -483,26 +571,19 @@
       </div>
 
       <p class="bio-text">
-        Chief Biomedical Equipment Technician and facility manager for DCI's <strong>North Little Rock</strong> and <strong>McCrory</strong> clinics (with technical assist coverage in Little Rock). Responsibilities span B. Braun Dialog+ hemodialysis machine maintenance, water room pretreatment and RO distribution loops, monthly non-patient lab sampling (cultures &amp; endotoxins), Workday inventory and supply chain logistics, and building operations.
+        Chief Biomedical Equipment Technician and facility manager for DCI's <strong>North Little Rock</strong> and <strong>McCrory</strong> clinics (with technical assist coverage in Little Rock). Responsibilities span B. Braun Dialog+ hemodialysis machines across all three facilities, water room pretreatment and RO distribution loops, monthly non-patient lab sampling (cultures &amp; endotoxins), Workday inventory and supply chain logistics, and building operations.
       </p>
 
       <div class="duty-tags">
-        <span class="duty-tag">B. Braun Dialog+</span>
+        <span class="duty-tag">B. Braun Dialog+ Fleet</span>
         <span class="duty-tag">Monthly Non-Patient Labs</span>
         <span class="duty-tag">RO &amp; Pretreatment</span>
         <span class="duty-tag">Facility &amp; Logistics</span>
       </div>
     </header>
 
-    <!-- View Filter Navigation -->
-    <nav aria-label="Profile View Filter">
-      <button class="filter-btn active" data-filter="all">ALL SYSTEMS</button>
-      <button class="filter-btn" data-filter="dci">DCI / WORK</button>
-      <button class="filter-btn" data-filter="personal">PERSONAL</button>
-    </nav>
-
     <!-- DCI Direct Channels -->
-    <section data-category="dci">
+    <section>
       <div class="section-header">
         <span>DCI Direct Channels</span>
         <span>PRIORITY</span>
@@ -541,92 +622,163 @@
       </div>
     </section>
 
-    <!-- Clinic & RO Architecture Comparison -->
-    <section data-category="dci">
+    <!-- Clinic & RO Architecture Comparison (Clickable for Technician Notes) -->
+    <section>
       <div class="section-header">
         <span>Clinic &amp; RO Water Architecture</span>
-        <span>2 PRIMARY • 1 ASSIST</span>
+        <span>TAP FOR TECH NOTES</span>
       </div>
       <div class="clinic-grid">
-        <div class="clinic-card">
+        <!-- North Little Rock -->
+        <div class="clinic-card" onclick="toggleClinic(this)" role="button" tabindex="0" aria-expanded="false">
           <div class="clinic-top">
             <span class="clinic-name">North Little Rock Clinic</span>
-            <span class="clinic-badge">PRIMARY CLINIC</span>
+            <div class="clinic-meta-right">
+              <span class="clinic-badge">PRIMARY CLINIC</span>
+              <span class="expand-caret">▼</span>
+            </div>
           </div>
-          <div class="ro-spec">RO System: Mar Cor CWP (Central Water Purification)</div>
+          <div class="ro-spec">RO: Mar Cor CWP • Dialysis: B. Braun Dialog+</div>
           <p class="clinic-desc">
-            High-capacity central water purification architecture supporting multi-station treatment floors, automated heat disinfection cycles, and monthly non-patient culture and endotoxin verification.
+            High-capacity central water purification architecture feeding a B. Braun Dialog+ treatment floor, featuring automated heat disinfection cycles and monthly non-patient culture and endotoxin verification.
           </p>
+          <div class="tech-notes" onclick="event.stopPropagation()">
+            <div class="tech-notes-title">Technician Operational Notes // NLR</div>
+            <ul>
+              <li><strong>CWP Heat Disinfect:</strong> Verify scheduled automated heat-disinfection thermal log and loop return temp sensors prior to morning open.</li>
+              <li><strong>Pretreatment Checks:</strong> Confirm daily total chlorine/chloramine &lt; 0.1 mg/L after primary/secondary carbon tanks and check softener hardness (&lt; 1 gpg) before RO start.</li>
+              <li><strong>Non-Patient Labs:</strong> Draw monthly post-RO, loop return, and bicarb/machine port samples for AAMI culture &amp; endotoxin tracking.</li>
+              <li><strong>B. Braun Dialog+ Fleet:</strong> Monitor conductivity/pH window stability, ultrafilter hours, and disinfect cycle completion across all floor stations.</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="clinic-card">
+        <!-- McCrory -->
+        <div class="clinic-card" onclick="toggleClinic(this)" role="button" tabindex="0" aria-expanded="false">
           <div class="clinic-top">
             <span class="clinic-name">McCrory Clinic</span>
-            <span class="clinic-badge">PRIMARY CLINIC</span>
+            <div class="clinic-meta-right">
+              <span class="clinic-badge">PRIMARY CLINIC</span>
+              <span class="expand-caret">▼</span>
+            </div>
           </div>
-          <div class="ro-spec">RO System: Mar Cor 4400 (Millenium HX)</div>
+          <div class="ro-spec">RO: Mar Cor 4400 (Millenium HX) • Dialysis: B. Braun Dialog+</div>
           <p class="clinic-desc">
-            Dedicated regional dialysis water plant driven by the Mar Cor 4400 / Millenium HX reverse osmosis unit, paired with full pretreatment filtration, loop monitoring, and monthly non-patient lab testing.
+            Dedicated regional dialysis water plant driven by the Mar Cor 4400 / Millenium HX reverse osmosis unit supporting B. Braun Dialog+ machines, full pretreatment filtration, and monthly non-patient lab testing.
           </p>
+          <div class="tech-notes" onclick="event.stopPropagation()">
+            <div class="tech-notes-title">Technician Operational Notes // McCrory</div>
+            <ul>
+              <li><strong>Mar Cor 4400 / Millenium HX:</strong> Log feed pressure, primary/final membrane ΔP, permeate vs. reject flow rates, and percent rejection baseline.</li>
+              <li><strong>Pretreatment &amp; Brine:</strong> Check multimedia filter ΔP, carbon empty-bed contact time (EBCT), and brine tank salt level ahead of regeneration.</li>
+              <li><strong>Non-Patient Labs:</strong> Monthly culture and endotoxin sampling across RO product port and distribution loop endpoints.</li>
+              <li><strong>B. Braun Dialog+ Fleet:</strong> Track preventive maintenance intervals, pressure transducer calibration, and spare parts stock for remote site readiness.</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="clinic-card">
+        <!-- Little Rock -->
+        <div class="clinic-card" onclick="toggleClinic(this)" role="button" tabindex="0" aria-expanded="false">
           <div class="clinic-top">
             <span class="clinic-name">Little Rock Clinic</span>
-            <span class="clinic-badge assist">ASSIST COVERAGE</span>
+            <div class="clinic-meta-right">
+              <span class="clinic-badge assist">ASSIST COVERAGE</span>
+              <span class="expand-caret">▼</span>
+            </div>
           </div>
-          <div class="ro-spec">Scope: Regional BMET &amp; Facility Support</div>
+          <div class="ro-spec">RO: AquaBoss • Dialysis: B. Braun Dialog+</div>
           <p class="clinic-desc">
-            Cross-clinic technical assistance, preventative maintenance backup, and operational support for clinical staff and biomedical infrastructure.
+            Cross-clinic technical assistance and preventative maintenance backup covering the AquaBoss reverse osmosis system, B. Braun Dialog+ hemodialysis fleet, and facility infrastructure.
           </p>
+          <div class="tech-notes" onclick="event.stopPropagation()">
+            <div class="tech-notes-title">Technician Operational Notes // Little Rock</div>
+            <ul>
+              <li><strong>AquaBoss RO System:</strong> Verify PLC controller status, stage pressures, permeate conductivity, and loop return velocity during assist visits.</li>
+              <li><strong>Cross-Site Support:</strong> Standardized B. Braun Dialog+ troubleshooting, valve/sensor swaps, and emergency backup coverage alongside local BMET staff.</li>
+              <li><strong>Facility &amp; Utilities:</strong> Assist with water room manifold checks, drain lines, and clinical floor power/network readiness.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Direct Transfer -->
-    <section data-category="personal">
-      <div class="section-header">
-        <span>Direct Transfer</span>
-        <span>PEER-TO-PEER</span>
+    <!-- Hidden Secondary Area: Direct Transfers, Personal Socials & Gaming -->
+    <div id="secondary-vault" aria-hidden="true">
+      <div class="vault-banner">
+        <span>OFF-DUTY &amp; PERSONAL CHANNELS</span>
+        <button type="button" class="vault-close" onclick="toggleVault()">HIDE [×]</button>
       </div>
-      <div class="transfer-grid">
-        <a class="transfer-card" href="https://venmo.com/u/Daniel-Bartyzal" rel="noopener" target="_blank">
-          <span>Venmo</span>
-          <span>@Daniel-Bartyzal</span>
-        </a>
-        <a class="transfer-card" href="https://cash.app/$DanB999" rel="noopener" target="_blank">
-          <span>Cash App</span>
-          <span>$DanB999</span>
-        </a>
-      </div>
-    </section>
 
-    <!-- Personal & Social -->
-    <section data-category="personal">
-      <div class="section-header">
-        <span>Personal &amp; Social</span>
-        <span>OFF-DUTY</span>
-      </div>
-      <div class="card-list">
-        <a class="item-card" href="https://www.instagram.com/barteezyy/" rel="noopener" target="_blank">
-          <div class="item-info">
-            <span class="item-label">Instagram</span>
-            <span class="item-value">@barteezyy</span>
+      <!-- Direct Transfer -->
+      <section>
+        <div class="section-header">
+          <span>Direct Transfer</span>
+          <span>PEER-TO-PEER</span>
+        </div>
+        <div class="transfer-grid">
+          <a class="transfer-card" href="https://venmo.com/u/Daniel-Bartyzal" rel="noopener" target="_blank">
+            <span>Venmo</span>
+            <span>@Daniel-Bartyzal</span>
+          </a>
+          <a class="transfer-card" href="https://cash.app/$DanB999" rel="noopener" target="_blank">
+            <span>Cash App</span>
+            <span>$DanB999</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Personal & Social -->
+      <section>
+        <div class="section-header">
+          <span>Personal &amp; Social</span>
+          <span>OFF-DUTY</span>
+        </div>
+        <div class="card-list">
+          <a class="item-card" href="https://www.instagram.com/barteezyy/" rel="noopener" target="_blank">
+            <div class="item-info">
+              <span class="item-label">Instagram</span>
+              <span class="item-value">@barteezyy</span>
+            </div>
+            <span class="pill-btn">OPEN</span>
+          </a>
+
+          <a class="item-card" href="https://open.spotify.com/user/bartyzal9" rel="noopener" target="_blank">
+            <div class="item-info">
+              <span class="item-label">Spotify</span>
+              <span class="item-value">bartyzal9</span>
+            </div>
+            <span class="pill-btn">OPEN</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Gaming Networks -->
+      <section>
+        <div class="section-header">
+          <span>Gaming Networks</span>
+          <span>CO-OP / ONLINE</span>
+        </div>
+        <div class="card-list">
+          <div class="item-card">
+            <div class="item-info">
+              <span class="item-label">Xbox / Epic / Crossplay</span>
+              <span class="item-value">KryptonianUtopian</span>
+            </div>
+            <button class="pill-btn" onclick="copyText('KryptonianUtopian')">COPY</button>
           </div>
-          <span class="pill-btn">OPEN</span>
-        </a>
 
-        <a class="item-card" href="https://open.spotify.com/user/bartyzal9" rel="noopener" target="_blank">
-          <div class="item-info">
-            <span class="item-label">Spotify</span>
-            <span class="item-value">bartyzal9</span>
-          </div>
-          <span class="pill-btn">OPEN</span>
-        </a>
-      </div>
-    </section>
+          <a class="item-card" href="https://github.com/KryptonianUtopian" rel="noopener" target="_blank">
+            <div class="item-info">
+              <span class="item-label">GitHub</span>
+              <span class="item-value">KryptonianUtopian</span>
+            </div>
+            <span class="pill-btn">OPEN</span>
+          </a>
+        </div>
+      </section>
+    </div>
 
-    <footer>
+    <footer id="footer-trigger">
       BIOMEDICAL &amp; WATER PURIFICATION HMI • DAN BARTYZAL
     </footer>
   </main>
@@ -634,25 +786,36 @@
   <div id="toast">Copied to clipboard</div>
 
   <script>
-    // Filter button logic
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const sections = document.querySelectorAll('section[data-category]');
+    // Toggle Clinic Technician Notes
+    function toggleClinic(card) {
+      const isExpanded = card.classList.toggle('expanded');
+      card.setAttribute('aria-expanded', isExpanded);
+    }
 
-    filterButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterButtons.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const target = btn.getAttribute('data-filter');
-
-        sections.forEach(sec => {
-          if (target === 'all' || sec.getAttribute('data-category') === target) {
-            sec.classList.remove('hidden');
-          } else {
-            sec.classList.add('hidden');
-          }
-        });
+    // Keyboard accessibility for clinic cards
+    document.querySelectorAll('.clinic-card').forEach(card => {
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleClinic(card);
+        }
       });
     });
+
+    // Hidden Button Toggle for Off-Duty & Transfers
+    const secretBtn = document.getElementById('secret-toggle');
+    const vault = document.getElementById('secondary-vault');
+
+    function toggleVault() {
+      const isVisible = vault.classList.toggle('visible');
+      secretBtn.classList.toggle('unlocked', isVisible);
+      vault.setAttribute('aria-hidden', !isVisible);
+      if (isVisible) {
+        vault.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+
+    secretBtn.addEventListener('click', toggleVault);
 
     // Clipboard copy helper
     function copyText(text) {
